@@ -72,6 +72,7 @@ a:hover { color: var(--blue-bright); }
   transition: border-color .3s, box-shadow .3s;
 }
 .glass:hover { border-color: rgba(59,130,246,.15); box-shadow: 0 8px 40px rgba(59,130,246,.06); }
+.glass { word-wrap: break-word; overflow-wrap: break-word; }
 
 .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
@@ -131,7 +132,7 @@ section { padding: 80px 0; }
 .section-title { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 48px; color: #fff; }
 
 /* ── Featured Project Layout ── */
-.project-card { margin-bottom: 48px; overflow: hidden; }
+.project-card { margin-bottom: 48px; overflow: hidden; max-width: 100%; }
 .project-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 0; }
 .project-info { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
 .project-info h3 { font-size: 24px; font-weight: 700; letter-spacing: -.5px; margin-bottom: 12px; color: #fff; }
@@ -469,7 +470,9 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   .more-grid { grid-template-columns: 1fr; }
   .kpi-row { grid-template-columns: 1fr 1fr; }
   .ecom-stats { grid-template-columns: repeat(2, 1fr); }
-  .project-info { padding: 24px 20px; }
+  .project-info { padding: 20px 16px; }
+  .project-info h3 { font-size: 20px; }
+  .project-info p { font-size: 13px; }
   .project-mockup { padding: 12px; }
   .nav-links { display: none; position: absolute; top: 60px; right: 0; background: rgba(0,0,0,.95); backdrop-filter: blur(16px); flex-direction: column; padding: 16px 24px; border-radius: 0 0 0 12px; border: 1px solid var(--border); }
   .nav-links.open { display: flex; }
