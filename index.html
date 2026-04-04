@@ -167,7 +167,7 @@ section { padding: 80px 0; }
 .dot { width: 8px; height: 8px; border-radius: 50%; }
 .dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
 .mockup-label { font-size: 10px; color: #444; margin-left: auto; }
-.mockup-body { font-size: 12px; }
+.mockup-body { font-size: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 /* ── Agent Project (stacked layout) ── */
 .agent-card .project-layout { grid-template-columns: 1fr; }
@@ -462,21 +462,50 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   .more-grid { grid-template-columns: repeat(2, 1fr); }
   .email-kpis { grid-template-columns: repeat(2, 1fr); }
   .agent-card .project-info-inner { flex-direction: column; gap: 16px; }
-  .agent-card .project-info-metrics { flex-direction: row; min-width: unset; }
+  .agent-card .project-info-metrics { flex-direction: row; min-width: unset; flex-wrap: wrap; }
+  .ecom-layout { min-height: auto; }
 }
 @media (max-width: 600px) {
   .more-grid { grid-template-columns: 1fr; }
   .kpi-row { grid-template-columns: 1fr 1fr; }
   .ecom-stats { grid-template-columns: repeat(2, 1fr); }
-  .project-info { padding: 24px; }
-  .project-mockup { padding: 16px; }
+  .project-info { padding: 24px 20px; }
+  .project-mockup { padding: 12px; }
   .nav-links { display: none; position: absolute; top: 60px; right: 0; background: rgba(0,0,0,.95); backdrop-filter: blur(16px); flex-direction: column; padding: 16px 24px; border-radius: 0 0 0 12px; border: 1px solid var(--border); }
   .nav-links.open { display: flex; }
   .nav-toggle { display: block; }
   .chat-sidebar, .dash-sidebar { display: none; }
   .impact-row { flex-direction: column; }
-  .hero h1 { font-size: 36px; }
+  .hero { padding: 120px 20px 48px; min-height: auto; }
+  .hero h1 { font-size: 36px; letter-spacing: -1px; }
+  .hero-sub { font-size: 16px; }
+  .hero-tagline { font-size: 14px; }
+  .hero-cta, .hero-secondary { display: flex; justify-content: center; width: 100%; margin: 0 0 10px 0; padding: 14px 24px; }
+  .hero-secondary { margin-left: 0; }
+  .hero-inner > div { display: flex; flex-direction: column; gap: 0; }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .section-title { font-size: 26px; margin-bottom: 32px; }
+  section { padding: 60px 0; }
+  .container { padding: 0 16px; }
+  .chat-layout { height: auto; min-height: 300px; }
+  .dash-layout { min-height: auto; flex-direction: column; }
+  .email-kpis { grid-template-columns: repeat(2, 1fr); }
+  .email-header { flex-direction: column; gap: 4px; }
+  .email-header span { font-size: 9px; }
+  .ecom-banner .promo { position: static; margin-top: 6px; display: inline-block; }
+  .contact h2 { font-size: 28px; }
+  .contact p { font-size: 14px; }
+  .contact-links { flex-direction: column; align-items: center; }
+  .c-link { width: 100%; justify-content: center; }
+  .order-row { flex-wrap: wrap; gap: 4px; }
+  .order-items { flex: none; width: 100%; margin: 0; font-size: 9px; }
+  .agent-card .project-info-metrics { flex-direction: column; }
+  .agent-card .project-info { padding: 20px; }
+  .agent-card .project-info-inner { gap: 12px; }
+  .project-card { margin-bottom: 32px; }
+  .mockup-frame { border-radius: 8px; }
+  .impact-item { padding: 8px 12px; }
+  .impact-value { font-size: 18px; }
 }
 
 /* ── Animations ── */
