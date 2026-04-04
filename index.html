@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krysh Rajendran — AI & Data Science Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #000000;
+  --surface: rgba(255,255,255,.04);
+  --border: rgba(255,255,255,.08);
+  --border-hover: rgba(255,255,255,.15);
+  --text: #EDEDED;
+  --muted: #888;
+  --dim: #555;
+  --blue: #3B82F6;
+  --blue-bright: #60A5FA;
+  --purple: #8B5CF6;
+  --purple-light: #a78bfa;
+  --green: #22c55e;
+  --red: #ef4444;
+  --amber: #eab308;
+  --gold: #C5A258;
+  --navy: #011E41;
+  --radius: 14px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(circle, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ── Ambient Glow Orbs ── */
+.orb {
+  position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+  filter: blur(120px);
+}
+.orb-1 { width: 600px; height: 600px; top: -200px; left: -150px; background: radial-gradient(circle, rgba(59,130,246,.12) 0%, transparent 70%); }
+.orb-2 { width: 500px; height: 500px; bottom: 5%; right: -100px; background: radial-gradient(circle, rgba(139,92,246,.1) 0%, transparent 70%); }
+.orb-3 { width: 400px; height: 400px; top: 45%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(139,92,246,.06) 0%, transparent 70%); }
+
+a { color: var(--blue); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--blue-bright); }
+
+/* ── Accent text ── */
+.accent { color: var(--blue); }
+
+/* ── Glass card ── */
+.glass {
+  background: rgba(255,255,255,.035);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color .3s, box-shadow .3s;
+}
+.glass:hover { border-color: rgba(59,130,246,.15); box-shadow: 0 8px 40px rgba(59,130,246,.06); }
+
+.container { max-width: 1120px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+/* ── Nav ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(0,0,0,.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1120px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between; height: 60px;
+}
+.nav-logo {
+  font-weight: 800; font-size: 15px; letter-spacing: -.5px;
+  color: var(--blue); border: 1px solid rgba(59,130,246,.2);
+  padding: 5px 14px; border-radius: 8px;
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { color: var(--muted); font-size: 13px; font-weight: 500; letter-spacing: .3px; text-decoration: none; transition: color .2s; -webkit-text-fill-color: initial; }
+.nav-links a:hover { color: var(--text); }
+.nav-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+
+/* ── Hero (compact) ── */
+.hero {
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 140px 24px 60px; min-height: 70vh;
+}
+.hero-inner { max-width: 680px; }
+.hero-badge {
+  display: inline-block; font-size: 12px; font-weight: 500;
+  color: var(--muted); border: 1px solid var(--border);
+  padding: 5px 16px; border-radius: 100px; margin-bottom: 24px;
+  letter-spacing: .5px;
+}
+.hero h1 { font-size: clamp(40px, 7vw, 72px); font-weight: 800; letter-spacing: -2px; line-height: 1.05; margin-bottom: 16px; }
+.hero-sub { font-size: 18px; color: var(--muted); font-weight: 500; margin-bottom: 12px; letter-spacing: -.3px; }
+.hero-tagline { font-size: 15px; color: var(--dim); line-height: 1.7; max-width: 520px; margin: 0 auto 32px; }
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px; border-radius: 100px; font-size: 14px; font-weight: 600;
+  color: #fff; background: var(--blue);
+  transition: transform .2s, box-shadow .2s; border: none; cursor: pointer; text-decoration: none;
+}
+.hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59,130,246,.35); background: var(--blue-bright); color: #fff; }
+.hero-secondary {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 12px 28px; border-radius: 100px; font-size: 14px; font-weight: 600;
+  color: var(--text); border: 1.5px solid rgba(59,130,246,.4); text-decoration: none;
+  transition: all .2s; margin-left: 12px;
+}
+.hero-secondary:hover { border-color: var(--blue); background: rgba(59,130,246,.1); color: var(--blue-bright); transform: translateY(-2px); }
+
+/* ── Section ── */
+section { padding: 80px 0; }
+.section-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 10px; color: var(--blue); }
+.section-title { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 48px; color: #fff; }
+
+/* ── Featured Project Layout ── */
+.project-card { margin-bottom: 48px; overflow: hidden; }
+.project-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 0; }
+.project-info { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+.project-info h3 { font-size: 24px; font-weight: 700; letter-spacing: -.5px; margin-bottom: 12px; color: #fff; }
+.project-info p { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+.impact-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.impact-item {
+  padding: 10px 16px; background: rgba(59,130,246,.06);
+  border: 1px solid rgba(59,130,246,.1); border-radius: 10px;
+}
+.impact-value { font-size: 20px; font-weight: 700; }
+.impact-label { font-size: 11px; color: var(--dim); margin-top: 1px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-size: 11px; font-weight: 500; color: #777; padding: 4px 10px;
+  background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 6px;
+}
+
+/* ── Mockup Pane ── */
+.project-mockup {
+  background: rgba(0,0,0,.3); border-left: 1px solid var(--border);
+  padding: 28px; display: flex; align-items: center; justify-content: center;
+}
+.mockup-frame {
+  width: 100%; border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--border); background: rgba(10,10,20,.7);
+  box-shadow: 0 16px 48px rgba(0,0,0,.4);
+}
+.mockup-bar {
+  display: flex; align-items: center; gap: 5px;
+  padding: 7px 12px; background: rgba(255,255,255,.03);
+  border-bottom: 1px solid var(--border);
+}
+.dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
+.mockup-label { font-size: 10px; color: #444; margin-left: auto; }
+.mockup-body { font-size: 12px; }
+
+/* ── Agent Project (stacked layout) ── */
+.agent-card .project-layout { grid-template-columns: 1fr; }
+.agent-card .project-info { padding: 32px 40px 20px; }
+.agent-card .project-info-inner { display: flex; gap: 32px; align-items: flex-start; }
+.agent-card .project-info-text { flex: 1; }
+.agent-card .project-info-text h3 { margin-bottom: 8px; }
+.agent-card .project-info-text p { margin-bottom: 12px; }
+.agent-card .project-info-metrics { display: flex; flex-direction: column; gap: 8px; min-width: 160px; }
+.agent-card .project-mockup {
+  border-left: none; border-top: 1px solid var(--border);
+  padding: 16px 20px;
+}
+
+/* ── Chat Mockup (NL-to-SQL) ── */
+.chat-layout { display: flex; flex-direction: column; height: 370px; }
+.chat-top { display: flex; flex: 1; min-height: 0; overflow: hidden; }
+.chat-sidebar {
+  width: 150px; min-width: 150px; background: rgba(255,255,255,.02);
+  border-right: 1px solid var(--border); padding: 10px;
+  display: flex; flex-direction: column;
+}
+.cs-label { font-size: 9px; color: #444; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; margin-top: 10px; }
+.cs-label:first-child { margin-top: 0; }
+.cs-select {
+  width: 100%; padding: 4px 6px; border-radius: 5px;
+  background: rgba(255,255,255,.05); border: 1px solid var(--border);
+  color: #999; font-size: 10px; margin-bottom: 2px;
+}
+.cs-brand {
+  font-weight: 700; font-size: 12px; color: #fff; text-align: center;
+  padding-bottom: 8px; border-bottom: 1px solid rgba(197,162,88,.2); margin-bottom: 6px;
+}
+.cs-brand span { color: var(--gold); }
+.cs-toggle {
+  display: flex; border-radius: 5px; overflow: hidden;
+  border: 1px solid rgba(197,162,88,.25); margin-bottom: 2px;
+}
+.cs-toggle div {
+  flex: 1; text-align: center; padding: 3px; font-size: 9px; color: #666;
+}
+.cs-toggle .active { background: rgba(197,162,88,.12); color: var(--gold); font-weight: 600; }
+.cs-preset {
+  padding: 5px 6px; border-radius: 5px;
+  background: rgba(255,255,255,.03); color: #888;
+  font-size: 9px; margin-top: 4px; cursor: default;
+  border: 1px solid rgba(255,255,255,.06);
+}
+.cs-preset:hover { border-color: rgba(197,162,88,.25); }
+.chat-input-bar {
+  display: flex; padding: 6px 10px; border-top: 1px solid var(--border);
+  background: rgba(0,0,0,.3); flex-shrink: 0; align-items: center;
+}
+.chat-input-bar input {
+  flex: 1; background: rgba(255,255,255,.04); border: 1px solid var(--border);
+  border-radius: 16px; padding: 5px 12px; color: #777; font-size: 10px; outline: none;
+  font-family: inherit;
+}
+.chat-input-bar button {
+  margin-left: 6px; background: var(--blue); border: none; border-radius: 50%;
+  width: 24px; height: 24px; color: #fff; font-size: 12px; cursor: default;
+  display: flex; align-items: center; justify-content: center;
+}
+/* Deep analysis stepper */
+.deep-stepper { display: flex; gap: 2px; margin-bottom: 2px; }
+.step {
+  flex: 1; height: 2px; border-radius: 1px; background: rgba(255,255,255,.06);
+}
+.step.done { background: var(--blue); }
+.step.active { background: var(--gold); animation: stepPulse 1.5s ease infinite; }
+@keyframes stepPulse { 0%, 100% { opacity: .6; } 50% { opacity: 1; } }
+.step-labels { display: flex; justify-content: space-between; margin-bottom: 3px; }
+.step-label { font-size: 5.5px; color: #444; text-transform: uppercase; letter-spacing: .3px; }
+.step-label.done { color: var(--blue); }
+.step-label.active { color: var(--gold); }
+/* Export buttons */
+.export-btns { display: flex; gap: 4px; margin-top: 4px; }
+.export-btn {
+  font-size: 8px; padding: 2px 6px; border-radius: 3px;
+  background: rgba(59,130,246,.08); border: 1px solid rgba(59,130,246,.15);
+  color: var(--blue-bright); cursor: default; font-weight: 500;
+}
+/* Chart with better styling */
+.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.chart-title-text { font-size: 9px; color: #888; font-weight: 600; }
+.chart-legend { display: flex; gap: 10px; }
+.legend-item { display: flex; align-items: center; gap: 3px; font-size: 7px; color: #666; }
+.legend-dot { width: 6px; height: 6px; border-radius: 2px; }
+.chat-main { flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+.chat-msg { max-width: 92%; }
+.chat-msg.user { align-self: flex-end; }
+.chat-msg.bot { align-self: flex-start; }
+.chat-bubble { padding: 8px 12px; border-radius: 10px; font-size: 11px; line-height: 1.5; }
+.chat-msg.user .chat-bubble { background: linear-gradient(135deg, #1e3a5f, #2d1f5e); color: #c8d6e5; }
+.chat-msg.bot .chat-bubble { background: rgba(255,255,255,.05); color: #bbb; }
+.chat-sql {
+  background: #0d0d1a; border: 1px solid rgba(255,255,255,.06); border-radius: 5px;
+  padding: 6px 8px; font-family: 'SF Mono', 'Cascadia Code', Consolas, monospace;
+  font-size: 9px; color: #79c0ff; margin: 4px 0; line-height: 1.4; overflow-x: auto;
+}
+.chat-sql .kw { color: #ff7b72; } .chat-sql .fn { color: #d2a8ff; } .chat-sql .str { color: #a5d6ff; }
+.chat-chart {
+  background: rgba(0,0,0,.3); border-radius: 6px; padding: 6px 8px;
+  margin: 4px 0; border: 1px solid var(--border);
+}
+.chat-insight {
+  background: rgba(59,130,246,.06);
+  border-left: 3px solid var(--blue); border-radius: 0 6px 6px 0;
+  padding: 6px 10px; font-size: 10px; color: var(--blue-bright); line-height: 1.45; margin-top: 4px;
+}
+
+/* ── Dashboard Mockup (Anomaly) ── */
+.dash-layout { display: flex; min-height: 380px; }
+.dash-sidebar {
+  width: 155px; min-width: 155px; background: rgba(255,255,255,.02);
+  border-right: 1px solid var(--border); padding: 12px;
+}
+.dash-sidebar .cs-label { font-size: 8px; }
+.mock-range {
+  width: 100%; height: 4px; background: rgba(255,255,255,.08);
+  border-radius: 2px; position: relative; margin: 6px 0 2px;
+}
+.mock-range::after {
+  content: ''; position: absolute; width: 12px; height: 12px;
+  background: var(--purple); border-radius: 50%; top: -4px; left: 55%;
+}
+.mock-chips { display: flex; flex-wrap: wrap; gap: 3px; }
+.mock-chip {
+  background: rgba(59,130,246,.1); border-radius: 3px; padding: 2px 5px;
+  font-size: 8px; color: var(--blue-bright);
+}
+.dash-main { flex: 1; padding: 14px; overflow-y: auto; }
+.kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.kpi-card {
+  background: rgba(255,255,255,.03); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px; text-align: center;
+}
+.kpi-val { font-size: 18px; font-weight: 700; color: #fff; }
+.kpi-label { font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: .5px; margin-top: 1px; }
+.kpi-delta { font-size: 10px; font-weight: 600; margin-top: 2px; }
+.kpi-delta.up { color: var(--green); } .kpi-delta.down { color: var(--red); }
+.sev-row { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.sev-badge { font-size: 9px; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+.sev-crit { background: rgba(239,68,68,.12); color: #f87171; }
+.sev-warn { background: rgba(234,179,8,.1); color: #fbbf24; }
+.sev-info { background: rgba(59,130,246,.1); color: #60a5fa; }
+.sev-ok { background: rgba(34,197,94,.08); color: #4ade80; }
+.ts-chart {
+  background: rgba(0,0,0,.25); border-radius: 8px; padding: 10px;
+  border: 1px solid var(--border); margin-bottom: 10px;
+}
+.anom-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+.anom-table th {
+  text-align: left; padding: 5px 8px; color: #555;
+  border-bottom: 1px solid var(--border); font-weight: 600; font-size: 9px;
+  text-transform: uppercase; letter-spacing: .5px;
+}
+.anom-table td { padding: 5px 8px; color: #999; border-bottom: 1px solid rgba(255,255,255,.03); }
+
+/* ── Email Report Mockup ── */
+.email-header {
+  background: var(--navy); border-bottom: 3px solid var(--gold);
+  padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;
+}
+.email-header strong { color: #fff; font-size: 12px; }
+.email-header span { color: var(--gold); font-size: 10px; }
+.email-body { padding: 14px; }
+.email-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+.email-kpi {
+  background: rgba(255,255,255,.03); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px; text-align: center;
+}
+.ek-label { font-size: 8px; color: #555; text-transform: uppercase; letter-spacing: .5px; }
+.ek-val { font-size: 16px; font-weight: 700; color: #fff; margin: 2px 0; }
+.ek-delta { font-size: 9px; font-weight: 600; }
+.email-section-title { font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin: 10px 0 6px; font-weight: 600; }
+
+/* ── Ecommerce Mockup ── */
+.ecom-layout { font-size: 12px; min-height: 420px; }
+.ecom-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 14px; background: rgba(255,255,255,.03);
+  border-bottom: 1px solid var(--border);
+}
+.ecom-brand { font-weight: 700; font-size: 13px; color: #fff; }
+.ecom-nav { display: flex; gap: 12px; font-size: 10px; color: #666; }
+.ecom-icons { display: flex; gap: 8px; color: #666; }
+.ecom-body { padding: 12px 14px; }
+.ecom-banner {
+  background: rgba(59,130,246,.08);
+  border: 1px solid rgba(59,130,246,.12);
+  border-radius: 10px; padding: 14px 16px; margin-bottom: 12px;
+  position: relative;
+}
+.ecom-banner h4 { font-size: 13px; color: #fff; font-weight: 700; margin-bottom: 2px; }
+.ecom-banner p { font-size: 10px; color: #999; }
+.ecom-banner .promo {
+  position: absolute; top: 8px; right: 10px;
+  background: rgba(255,255,255,.08); border-radius: 5px; padding: 3px 8px;
+  font-size: 9px; color: var(--blue-bright); font-weight: 600;
+}
+.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+.p-card {
+  background: rgba(255,255,255,.03); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px; text-align: center;
+}
+.p-img {
+  width: 100%; height: 40px; border-radius: 6px; margin-bottom: 4px;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.p-name { font-size: 10px; color: #ccc; font-weight: 600; }
+.p-meta { font-size: 8px; color: #666; }
+.p-price { font-size: 12px; color: var(--blue); font-weight: 700; margin: 2px 0; }
+.p-btn {
+  display: block; background: var(--blue); color: #fff; border: none;
+  border-radius: 5px; padding: 3px; font-size: 9px; font-weight: 600; width: 100%; cursor: default;
+}
+.ecom-admin-label {
+  display: inline-block; font-size: 8px; background: rgba(59,130,246,.1);
+  color: var(--blue-bright); padding: 2px 6px; border-radius: 3px; font-weight: 600;
+  margin-bottom: 6px;
+}
+.ecom-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
+.ecom-stat {
+  background: rgba(255,255,255,.03); border: 1px solid var(--border);
+  border-radius: 6px; padding: 6px; text-align: center;
+}
+.es-val { font-size: 13px; font-weight: 700; color: #fff; }
+.es-label { font-size: 7px; color: #555; text-transform: uppercase; letter-spacing: .5px; }
+.ecom-orders {
+  background: rgba(255,255,255,.02); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px;
+}
+.ecom-orders h5 { font-size: 10px; color: #999; font-weight: 600; margin-bottom: 6px; }
+.order-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,.03); font-size: 10px;
+}
+.order-row:last-child { border-bottom: none; }
+.order-id { color: var(--blue); font-weight: 600; }
+.order-items { color: #888; flex: 1; margin: 0 8px; }
+.order-total { color: #ccc; font-weight: 600; margin-right: 8px; }
+.status-pill { font-size: 8px; padding: 1px 6px; border-radius: 8px; font-weight: 600; }
+.st-paid { background: rgba(34,197,94,.1); color: #4ade80; }
+.st-pend { background: rgba(234,179,8,.1); color: #fbbf24; }
+.st-ship { background: rgba(59,130,246,.1); color: #60a5fa; }
+
+/* ── More Projects Grid ── */
+.more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.mini-card { padding: 24px; }
+.mini-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; letter-spacing: -.3px; color: #fff; }
+.mini-card p { font-size: 13px; color: #666; line-height: 1.55; margin-bottom: 12px; }
+.mini-card .tags { gap: 5px; }
+.mini-card .tag { font-size: 10px; padding: 3px 8px; }
+.badge-grad {
+  display: inline-block; font-size: 9px; font-weight: 600;
+  padding: 2px 10px; border-radius: 100px; margin-bottom: 10px;
+  background: rgba(59,130,246,.1);
+  color: var(--blue-bright);
+}
+.badge-personal {
+  display: inline-block; font-size: 9px; font-weight: 600;
+  padding: 2px 10px; border-radius: 100px;
+  background: rgba(6,182,212,.1); color: #22d3ee;
+  margin-left: 6px;
+}
+
+/* ── Contact ── */
+.contact { text-align: center; padding: 100px 0 60px; }
+.contact h2 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+.contact p { color: var(--muted); font-size: 15px; margin-bottom: 32px; }
+.contact-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.c-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 24px; border-radius: 100px; font-size: 13px; font-weight: 600;
+  text-decoration: none; transition: all .2s; border: 1.5px solid rgba(59,130,246,.35); color: var(--text);
+}
+.c-link:hover { border-color: var(--blue); background: rgba(59,130,246,.08); transform: translateY(-2px); color: var(--blue-bright); }
+.c-link.primary {
+  background: var(--blue); border: none; color: #fff;
+}
+.c-link.primary:hover { box-shadow: 0 8px 30px rgba(59,130,246,.35); background: var(--blue-bright); color: #fff; }
+.c-link svg { width: 16px; height: 16px; }
+
+/* ── Footer ── */
+footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-size: 12px; color: #333; position: relative; z-index: 1; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .project-layout { grid-template-columns: 1fr; }
+  .project-mockup { border-left: none; border-top: 1px solid var(--border); }
+  .more-grid { grid-template-columns: repeat(2, 1fr); }
+  .email-kpis { grid-template-columns: repeat(2, 1fr); }
+  .agent-card .project-info-inner { flex-direction: column; gap: 16px; }
+  .agent-card .project-info-metrics { flex-direction: row; min-width: unset; }
+}
+@media (max-width: 600px) {
+  .more-grid { grid-template-columns: 1fr; }
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+  .ecom-stats { grid-template-columns: repeat(2, 1fr); }
+  .project-info { padding: 24px; }
+  .project-mockup { padding: 16px; }
+  .nav-links { display: none; position: absolute; top: 60px; right: 0; background: rgba(0,0,0,.95); backdrop-filter: blur(16px); flex-direction: column; padding: 16px 24px; border-radius: 0 0 0 12px; border: 1px solid var(--border); }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: block; }
+  .chat-sidebar, .dash-sidebar { display: none; }
+  .impact-row { flex-direction: column; }
+  .hero h1 { font-size: 36px; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Animations ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- Ambient orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">KR</span>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#more">More Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Miami, FL &middot; AI & Data Science</div>
+    <h1 style="color:#fff">Krysh Rajendran</h1>
+    <p class="hero-sub">AI & Data Science Engineer</p>
+    <p class="hero-tagline">I build intelligent systems that turn data into decisions — from NL-to-SQL agents and real-time anomaly detection to full-stack ecommerce platforms.</p>
+    <div>
+      <a href="#projects" class="hero-cta">View Projects &#8595;</a>
+      <a href="https://linkedin.com/in/kryshr" target="_blank" class="hero-secondary">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Featured Projects ── -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Featured Work</p>
+    <h2 class="section-title">Projects</h2>
+
+    <!-- ═══ 1. NL-to-SQL Agent ═══ -->
+    <div class="project-card glass reveal agent-card">
+      <div class="project-layout">
+        <div class="project-info">
+          <div class="project-info-inner">
+            <div class="project-info-text">
+              <h3>NL-to-SQL AI Agent</h3>
+              <p>Conversational analytics agent that translates natural language into BigQuery SQL, renders Plotly charts, and generates written insights. Features a 6-phase deep analysis pipeline with up to 10 autonomous reasoning steps.</p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">LangGraph</span>
+                <span class="tag">OpenAI</span><span class="tag">Anthropic</span><span class="tag">BigQuery</span>
+                <span class="tag">Plotly</span><span class="tag">Streamlit</span>
+              </div>
+            </div>
+            <div class="project-info-metrics">
+              <div class="impact-item"><div class="impact-value accent">60%</div><div class="impact-label">Reporting Automated</div></div>
+              <div class="impact-item"><div class="impact-value accent">10-step</div><div class="impact-label">Autonomous Reasoning</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="project-mockup">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+              <span class="mockup-label">Acme Analytics — NL-to-SQL Agent</span>
+            </div>
+            <div class="mockup-body">
+              <div class="chat-layout">
+                <!-- Top: sidebar + chat content -->
+                <div class="chat-top">
+                  <div class="chat-sidebar">
+                    <div class="cs-brand">Acme<span>Analytics</span></div>
+                    <div class="cs-label">Model</div>
+                    <div class="cs-select">claude-sonnet-4</div>
+                    <div class="cs-label">Mode</div>
+                    <div class="cs-toggle"><div>Quick</div><div class="active">Deep</div></div>
+                    <div class="cs-label" style="margin-top:8px">Presets</div>
+                    <div class="cs-preset">Revenue by channel?</div>
+                    <div class="cs-preset">Top products?</div>
+                    <div class="cs-preset">CVR trend?</div>
+                  </div>
+                  <div class="chat-main">
+                    <!-- User question -->
+                    <div class="chat-msg user"><div class="chat-bubble">How did online revenue perform this week vs last week by product category?</div></div>
+                    <!-- Agent response -->
+                    <div class="chat-msg bot">
+                      <div class="chat-bubble">
+                        <!-- Deep analysis stepper -->
+                        <div class="deep-stepper">
+                          <div class="step done"></div><div class="step done"></div><div class="step done"></div>
+                          <div class="step done"></div><div class="step done"></div><div class="step active"></div>
+                        </div>
+                        <div class="step-labels">
+                          <span class="step-label done">Decompose</span>
+                          <span class="step-label done">Temporal</span>
+                          <span class="step-label done">Segment</span>
+                          <span class="step-label done">Drill</span>
+                          <span class="step-label done">Confirm</span>
+                          <span class="step-label active">Conclude</span>
+                        </div>
+                        <div style="font-size:8px;color:#666;margin-bottom:4px">&#9679; 3 queries &middot; step 8/10 &middot; <strong style="color:#999">acme.sales.transactions</strong></div>
+                        <details style="margin-bottom:4px">
+                          <summary style="font-size:9px;color:var(--blue-bright);cursor:pointer;margin-bottom:2px">View SQL</summary>
+                          <div class="chat-sql" style="margin:2px 0"><span class="kw">SELECT</span> category, <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> week=<span class="str">'current'</span> <span class="kw">THEN</span> revenue <span class="kw">END</span>) this_week, <span class="fn">ROUND</span>((this_week-last_week)/last_week*100,1) pct_chg <span class="kw">FROM</span> <span class="str">`acme.sales.transactions`</span> <span class="kw">WHERE</span> date <span class="kw">BETWEEN</span> <span class="str">'2026-03-23'</span> <span class="kw">AND</span> <span class="str">'2026-04-05'</span> <span class="kw">GROUP BY</span> 1</div>
+                        </details>
+                        <!-- Chart -->
+                        <div class="chat-chart">
+                          <div class="chart-header">
+                            <span class="chart-title-text">Revenue by Category &mdash; WoW</span>
+                            <div class="chart-legend">
+                              <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>This Week</div>
+                              <div class="legend-item"><div class="legend-dot" style="background:#555"></div>Last Week</div>
+                            </div>
+                          </div>
+                          <svg width="100%" height="65" viewBox="0 0 380 80">
+                            <!-- Grid -->
+                            <line x1="30" y1="8" x2="30" y2="62" stroke="#1a1a2a" stroke-width=".5"/>
+                            <line x1="30" y1="62" x2="370" y2="62" stroke="#1a1a2a" stroke-width=".5"/>
+                            <line x1="30" y1="35" x2="370" y2="35" stroke="#1a1a2a" stroke-width=".3" stroke-dasharray="2,2"/>
+                            <text x="26" y="65" fill="#444" font-size="5.5" text-anchor="end">$0</text>
+                            <text x="26" y="38" fill="#444" font-size="5.5" text-anchor="end">$75K</text>
+                            <text x="26" y="11" fill="#444" font-size="5.5" text-anchor="end">$150K</text>
+                            <!-- Electronics -->
+                            <rect x="44" y="12" width="30" height="50" rx="3" fill="var(--blue)"/>
+                            <rect x="78" y="22" width="30" height="40" rx="3" fill="#555" opacity=".45"/>
+                            <text x="58" y="9" text-anchor="middle" fill="var(--blue-bright)" font-size="5.5" font-weight="600">$142K</text>
+                            <text x="76" y="73" text-anchor="middle" fill="#777" font-size="6.5">Electronics</text>
+                            <text x="76" y="79" text-anchor="middle" fill="var(--green)" font-size="5" font-weight="600">+19.8%</text>
+                            <!-- Apparel -->
+                            <rect x="130" y="24" width="30" height="38" rx="3" fill="var(--blue)"/>
+                            <rect x="164" y="26" width="30" height="36" rx="3" fill="#555" opacity=".45"/>
+                            <text x="144" y="21" text-anchor="middle" fill="var(--blue-bright)" font-size="5.5" font-weight="600">$108K</text>
+                            <text x="162" y="73" text-anchor="middle" fill="#777" font-size="6.5">Apparel</text>
+                            <text x="162" y="79" text-anchor="middle" fill="var(--green)" font-size="5" font-weight="600">+2.1%</text>
+                            <!-- Home -->
+                            <rect x="216" y="32" width="30" height="30" rx="3" fill="var(--blue)"/>
+                            <rect x="250" y="28" width="30" height="34" rx="3" fill="#555" opacity=".45"/>
+                            <text x="230" y="29" text-anchor="middle" fill="var(--blue-bright)" font-size="5.5" font-weight="600">$82K</text>
+                            <text x="248" y="73" text-anchor="middle" fill="#777" font-size="6.5">Home</text>
+                            <text x="248" y="79" text-anchor="middle" fill="var(--red)" font-size="5" font-weight="600">-3.1%</text>
+                            <!-- Sports -->
+                            <rect x="302" y="40" width="30" height="22" rx="3" fill="var(--blue)"/>
+                            <rect x="336" y="36" width="30" height="26" rx="3" fill="#555" opacity=".45"/>
+                            <text x="316" y="37" text-anchor="middle" fill="var(--blue-bright)" font-size="5.5" font-weight="600">$61K</text>
+                            <text x="334" y="73" text-anchor="middle" fill="#777" font-size="6.5">Sports</text>
+                            <text x="334" y="79" text-anchor="middle" fill="var(--red)" font-size="5" font-weight="600">-5.7%</text>
+                          </svg>
+                        </div>
+                        <!-- Insight -->
+                        <div class="chat-insight">
+                          <strong>Key Insight:</strong> Revenue grew <strong>+12.4% WoW</strong>, driven by Electronics (+19.8%). Home &amp; Sports declined slightly. <strong>Rec:</strong> Shift ad spend toward Electronics.
+                        </div>
+                        <div class="export-btns">
+                          <div class="export-btn">&#128196; Export HTML</div>
+                          <div class="export-btn">&#128221; Export Word</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Bottom: chat input -->
+                <div class="chat-input-bar">
+                  <input type="text" placeholder="Ask a follow-up question about your data..." disabled>
+                  <button aria-label="Send">&#8593;</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 2. Anomaly Detection Dashboard ═══ -->
+    <div class="project-card glass reveal">
+      <div class="project-layout">
+        <div class="project-info">
+          <h3>Real-Time Anomaly Detection Dashboard</h3>
+          <p>Production monitoring dashboard tracking hourly e-commerce KPIs with statistical anomaly detection. Uses sigma bands against prior-5-week baselines, 3-tier severity classification, crash detection, and multi-dimensional drill-down. Deployed on Google Cloud Run.</p>
+          <div class="impact-row">
+            <div class="impact-item"><div class="impact-value accent">1.5hr &rarr; 3min</div><div class="impact-label">Data Refresh Time</div></div>
+            <div class="impact-item"><div class="impact-value accent">3-Tier</div><div class="impact-label">Severity System</div></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">BigQuery</span>
+            <span class="tag">Cloud Run</span><span class="tag">Plotly</span><span class="tag">Statistical Analysis</span>
+          </div>
+        </div>
+        <div class="project-mockup">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+              <span class="mockup-label">Acme KPI Monitor — Live</span>
+            </div>
+            <div class="mockup-body">
+              <div class="dash-layout">
+                <div class="dash-sidebar">
+                  <div class="cs-label">Date</div>
+                  <div class="cs-select">2026-04-03</div>
+                  <div class="cs-label">Sigma</div>
+                  <div class="mock-range"></div>
+                  <div style="display:flex;justify-content:space-between;font-size:7px;color:#444"><span>0.5</span><span>2.0</span><span>3.0</span></div>
+                  <div class="cs-label">Dimensions</div>
+                  <div class="mock-chips">
+                    <span class="mock-chip">Desktop</span><span class="mock-chip">Mobile</span><span class="mock-chip">+2</span>
+                  </div>
+                  <div class="cs-label">Severity</div>
+                  <div class="mock-chips">
+                    <span class="mock-chip">Critical</span><span class="mock-chip">Warning</span>
+                  </div>
+                  <div class="cs-label">Lookback</div>
+                  <div class="cs-select">5 weeks</div>
+                </div>
+                <div class="dash-main">
+                  <div class="kpi-row">
+                    <div class="kpi-card"><div class="kpi-val">24,831</div><div class="kpi-label">Visitors</div><div class="kpi-delta up">+8.2% vs P5W</div></div>
+                    <div class="kpi-card"><div class="kpi-val">1,247</div><div class="kpi-label">Purchasers</div><div class="kpi-delta down">-4.1% vs P5W</div></div>
+                    <div class="kpi-card"><div class="kpi-val">5.02%</div><div class="kpi-label">CVR</div><div class="kpi-delta down">-11.3% vs P5W</div></div>
+                  </div>
+                  <div class="ts-chart">
+                    <svg width="100%" height="90" viewBox="0 0 380 90">
+                      <!-- Sigma bands -->
+                      <polygon points="10,65 50,60 90,55 130,50 170,52 210,48 250,45 290,42 330,46 370,50 370,18 330,20 290,14 250,18 210,22 170,24 130,22 90,28 50,32 10,38" fill="rgba(139,92,246,.06)" stroke="none"/>
+                      <!-- Prior days -->
+                      <polyline points="10,48 50,44 90,40 130,38 170,42 210,36 250,34 290,32 330,38 370,42" fill="none" stroke="#555" stroke-width="1" opacity=".3" stroke-dasharray="3,3"/>
+                      <!-- P5W baseline -->
+                      <polyline points="10,50 50,46 90,42 130,38 170,40 210,37 250,34 290,32 330,35 370,38" fill="none" stroke="var(--amber)" stroke-width="1.5" opacity=".6"/>
+                      <!-- Today -->
+                      <polyline points="10,52 50,46 90,42 130,36 170,38 210,33 250,28 290,68 330,62 370,54" fill="none" stroke="var(--blue)" stroke-width="2.5"/>
+                      <!-- Anomaly -->
+                      <circle cx="290" cy="68" r="5" fill="none" stroke="var(--red)" stroke-width="1.5"/>
+                      <circle cx="290" cy="68" r="2" fill="var(--red)"/>
+                      <text x="302" y="72" fill="#f87171" font-size="6" font-weight="600">ANOMALY</text>
+                      <!-- X labels -->
+                      <text x="10" y="86" fill="#444" font-size="6">12 AM</text>
+                      <text x="90" y="86" fill="#444" font-size="6">6 AM</text>
+                      <text x="170" y="86" fill="#444" font-size="6">9 AM</text>
+                      <text x="250" y="86" fill="#444" font-size="6">12 PM</text>
+                      <text x="330" y="86" fill="#444" font-size="6">3 PM</text>
+                    </svg>
+                  </div>
+                  <div class="sev-row">
+                    <span class="sev-badge sev-crit">Critical: 1</span>
+                    <span class="sev-badge sev-warn">Warning: 3</span>
+                    <span class="sev-badge sev-info">Info: 5</span>
+                    <span class="sev-badge sev-ok">Normal: 15</span>
+                  </div>
+                  <table class="anom-table">
+                    <thead><tr><th>Hour</th><th>KPI</th><th>Value</th><th>Baseline</th><th>&sigma;</th><th>Status</th></tr></thead>
+                    <tbody>
+                      <tr><td>2 PM</td><td>CVR</td><td>2.1%</td><td>5.0%</td><td>-3.2&sigma;</td><td><span class="sev-badge sev-crit" style="font-size:8px;padding:1px 5px">Critical</span></td></tr>
+                      <tr><td>11 AM</td><td>Visitors</td><td>3,841</td><td>2,900</td><td>+2.4&sigma;</td><td><span class="sev-badge sev-warn" style="font-size:8px;padding:1px 5px">Warning</span></td></tr>
+                      <tr><td>9 AM</td><td>Purchasers</td><td>89</td><td>112</td><td>-1.8&sigma;</td><td><span class="sev-badge sev-info" style="font-size:8px;padding:1px 5px">Info</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 3. Automated Report Pipeline ═══ -->
+    <div class="project-card glass reveal">
+      <div class="project-layout">
+        <div class="project-info">
+          <h3>Automated Report Pipeline</h3>
+          <p>Python-based system that generates self-contained HTML email reports with embedded charts, KPI cards, sparklines, and treemaps. Pulls data from BigQuery, renders visual summaries, and auto-delivers to stakeholders daily — replacing manual Excel-based reporting.</p>
+          <div class="impact-row">
+            <div class="impact-item"><div class="impact-value accent">Daily</div><div class="impact-label">Automated Delivery</div></div>
+            <div class="impact-item"><div class="impact-value accent">100%</div><div class="impact-label">Hands-free</div></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">BigQuery</span>
+            <span class="tag">HTML/CSS</span><span class="tag">Plotly</span>
+            <span class="tag">SMTP</span><span class="tag">Scheduled Jobs</span>
+          </div>
+        </div>
+        <div class="project-mockup">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+              <span class="mockup-label">Daily Report — Apr 3, 2026</span>
+            </div>
+            <div class="mockup-body">
+              <div class="email-header">
+                <strong>Daily KPI Report — Acme Corp</strong>
+                <span>From: reports@acme.io &bull; 6:00 AM ET</span>
+              </div>
+              <div class="email-body">
+                <div class="email-kpis">
+                  <div class="email-kpi"><div class="ek-label">Revenue</div><div class="ek-val" style="color:var(--green)">$842K</div><div class="ek-delta" style="color:var(--green)">+6.2% YoY</div></div>
+                  <div class="email-kpi"><div class="ek-label">Orders</div><div class="ek-val">3,417</div><div class="ek-delta" style="color:var(--green)">+3.8% YoY</div></div>
+                  <div class="email-kpi"><div class="ek-label">AOV</div><div class="ek-val">$246</div><div class="ek-delta" style="color:var(--green)">+2.3%</div></div>
+                  <div class="email-kpi"><div class="ek-label">Return Rate</div><div class="ek-val">4.1%</div><div class="ek-delta" style="color:var(--red)">+0.8pp</div></div>
+                </div>
+                <div class="email-section-title">Revenue by Category</div>
+                <svg width="100%" height="70" viewBox="0 0 380 70" style="margin-bottom:8px">
+                  <rect x="0" y="0" width="155" height="70" rx="4" fill="var(--blue)" opacity=".7"/>
+                  <text x="78" y="30" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">Electronics</text>
+                  <text x="78" y="42" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="6.5">$312K (37%)</text>
+                  <rect x="159" y="0" width="105" height="38" rx="4" fill="var(--purple)" opacity=".7"/>
+                  <text x="212" y="18" text-anchor="middle" fill="#fff" font-size="7" font-weight="600">Apparel</text>
+                  <text x="212" y="28" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="6">$198K (24%)</text>
+                  <rect x="159" y="42" width="105" height="28" rx="4" fill="#93c5fd" opacity=".6"/>
+                  <text x="212" y="58" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">Home $147K</text>
+                  <rect x="268" y="0" width="112" height="42" rx="4" fill="var(--blue-bright)" opacity=".65"/>
+                  <text x="324" y="18" text-anchor="middle" fill="#fff" font-size="7" font-weight="600">Sports</text>
+                  <text x="324" y="28" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="6">$118K (14%)</text>
+                  <rect x="268" y="46" width="112" height="24" rx="4" fill="#0e9aaa" opacity=".5"/>
+                  <text x="324" y="61" text-anchor="middle" fill="#fff" font-size="6">Other $67K</text>
+                </svg>
+                <div class="email-section-title">7-Day Revenue Trend</div>
+                <svg width="100%" height="40" viewBox="0 0 380 40" style="margin-bottom:8px">
+                  <polyline points="10,32 60,27 120,25 180,20 230,16 290,13 350,8" fill="none" stroke="url(#sg)" stroke-width="2" stroke-linecap="round"/>
+                  <defs><linearGradient id="sg" x1="0%" y1="0%" x2="100%"><stop offset="0%" stop-color="var(--blue)"/><stop offset="100%" stop-color="var(--blue-bright)"/></linearGradient></defs>
+                  <circle cx="350" cy="8" r="3" fill="var(--blue-bright)"/>
+                  <text x="356" y="10" fill="var(--blue-bright)" font-size="6" font-weight="600">$842K</text>
+                  <text x="10" y="38" fill="#444" font-size="5">Mon</text>
+                  <text x="120" y="38" fill="#444" font-size="5">Wed</text>
+                  <text x="230" y="38" fill="#444" font-size="5">Fri</text>
+                  <text x="350" y="38" fill="#444" font-size="5">Sun</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 4. Full-Stack Ecommerce Platform ═══ -->
+    <div class="project-card glass reveal">
+      <div class="project-layout">
+        <div class="project-info">
+          <h3>Full-Stack Ecommerce Platform <span class="badge-personal">Personal</span></h3>
+          <p>Production-grade ecommerce system built from scratch. Features dual-market support with GeoIP routing, guest checkout, affiliate program with commission tracking, discount codes, store credits, abandoned cart recovery, email campaigns with open tracking, shipping label generation via carrier APIs, and a full admin dashboard with analytics.</p>
+          <div class="impact-row">
+            <div class="impact-item"><div class="impact-value accent">50+</div><div class="impact-label">Routes / Endpoints</div></div>
+            <div class="impact-item"><div class="impact-value accent">13+</div><div class="impact-label">Database Tables</div></div>
+          </div>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span>
+            <span class="tag">Vanilla JS</span><span class="tag">Docker</span><span class="tag">Jinja2</span>
+            <span class="tag">Resend</span><span class="tag">Shippo API</span><span class="tag">GeoIP</span>
+            <span class="tag">Playwright</span>
+          </div>
+        </div>
+        <div class="project-mockup">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+              <span class="mockup-label">shop.example.com</span>
+            </div>
+            <div class="mockup-body">
+              <div class="ecom-layout">
+                <div class="ecom-header">
+                  <div class="ecom-brand">NovaBio</div>
+                  <div class="ecom-nav"><span>Shop</span><span>About</span><span>FAQ</span></div>
+                  <div class="ecom-icons">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                  </div>
+                </div>
+                <div class="ecom-body">
+                  <div class="ecom-banner">
+                    <h4>Research-Grade Compounds</h4>
+                    <p>Lab-tested &middot; COA included with every order</p>
+                    <div class="promo">WELCOME15 — 15% Off</div>
+                  </div>
+                  <div class="product-grid">
+                    <div class="p-card"><div class="p-img" style="background:rgba(99,102,241,.08)">&#9883;</div><div class="p-name">BPC-157</div><div class="p-meta">5mg vial</div><div class="p-price">$34.99</div><div class="p-btn">Add to Cart</div></div>
+                    <div class="p-card"><div class="p-img" style="background:rgba(34,197,94,.06)">&#9880;</div><div class="p-name">TB-500</div><div class="p-meta">5mg vial</div><div class="p-price">$42.99</div><div class="p-btn">Add to Cart</div></div>
+                    <div class="p-card"><div class="p-img" style="background:rgba(236,72,153,.06)">&#9878;</div><div class="p-name">GHK-Cu</div><div class="p-meta">200mg</div><div class="p-price">$28.50</div><div class="p-btn">Add to Cart</div></div>
+                  </div>
+                  <div class="ecom-admin-label">ADMIN DASHBOARD</div>
+                  <div class="ecom-stats">
+                    <div class="ecom-stat"><div class="es-val">$12.4K</div><div class="es-label">Revenue (7d)</div></div>
+                    <div class="ecom-stat"><div class="es-val">89</div><div class="es-label">Orders</div></div>
+                    <div class="ecom-stat"><div class="es-val">342</div><div class="es-label">Sessions</div></div>
+                    <div class="ecom-stat"><div class="es-val">4.2%</div><div class="es-label">CVR</div></div>
+                  </div>
+                  <div class="ecom-orders">
+                    <h5>Recent Orders</h5>
+                    <div class="order-row">
+                      <span class="order-id">#1047</span>
+                      <span class="order-items">2x BPC-157, 1x TB-500</span>
+                      <span class="order-total">$112.97</span>
+                      <span class="status-pill st-paid">Paid</span>
+                      <span class="status-pill st-ship" style="margin-left:4px">Shipped</span>
+                    </div>
+                    <div class="order-row">
+                      <span class="order-id">#1046</span>
+                      <span class="order-items">3x GHK-Cu</span>
+                      <span class="order-total">$85.50</span>
+                      <span class="status-pill st-paid">Paid</span>
+                      <span class="status-pill st-pend" style="margin-left:4px">Processing</span>
+                    </div>
+                    <div class="order-row">
+                      <span class="order-id">#1045</span>
+                      <span class="order-items">1x BPC-157</span>
+                      <span class="order-total">$34.99</span>
+                      <span class="status-pill st-pend">Pending</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── More Projects ── -->
+<section id="more">
+  <div class="container">
+    <p class="section-label">More Work</p>
+    <h2 class="section-title">Other Projects</h2>
+    <div class="more-grid">
+      <div class="mini-card glass reveal">
+        <h4>Resume Builder</h4>
+        <p>Node.js tool generating tailored .docx resumes from structured experience data, customized per job description.</p>
+        <div class="tags"><span class="tag">Node.js</span><span class="tag">docx</span><span class="tag">CLI</span></div>
+      </div>
+      <div class="mini-card glass reveal">
+        <h4>Job Application Automation</h4>
+        <p>Playwright-based browser automation with HTTP control server for filling job portal forms programmatically.</p>
+        <div class="tags"><span class="tag">Playwright</span><span class="tag">Node.js</span><span class="tag">REST API</span></div>
+      </div>
+      <div class="mini-card glass reveal">
+        <h4>Promo Calendar ETL</h4>
+        <p>Daily Python pipelines downloading promo data from SharePoint via Selenium and loading to BigQuery.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Selenium</span><span class="tag">BigQuery</span><span class="tag">ETL</span></div>
+      </div>
+      <div class="mini-card glass reveal">
+        <h4>SAP BO Booking Pipeline</h4>
+        <p>Automated data pipeline extracting booking reports from SAP Business Objects into BigQuery via Apps Script.</p>
+        <div class="tags"><span class="tag">Apps Script</span><span class="tag">SAP BO</span><span class="tag">BigQuery</span></div>
+      </div>
+      <div class="mini-card glass reveal">
+        <h4>Weekly Tracker Email</h4>
+        <p>Excel VBA + Python system auto-generating formatted Outlook email drafts for weekly project updates.</p>
+        <div class="tags"><span class="tag">VBA</span><span class="tag">Python</span><span class="tag">Outlook</span></div>
+      </div>
+      <div class="mini-card glass reveal">
+        <span class="badge-grad">Graduate</span>
+        <h4>NLP Bias Detection</h4>
+        <p>LSTM and Transformer-based system for detecting bias in text and generating abstractive summaries.</p>
+        <div class="tags"><span class="tag">PyTorch</span><span class="tag">Transformers</span><span class="tag">LSTM</span><span class="tag">NLP</span></div>
+      </div>
+      <div class="mini-card glass reveal">
+        <span class="badge-grad">Graduate</span>
+        <h4>Alzheimer's MRI Classification</h4>
+        <p>Computer vision pipeline using GANs for data augmentation and Vision Transformers for brain MRI classification.</p>
+        <div class="tags"><span class="tag">GANs</span><span class="tag">ViT</span><span class="tag">TensorFlow</span><span class="tag">Medical AI</span></div>
+      </div>
+      <div class="mini-card glass reveal">
+        <span class="badge-grad">Graduate</span>
+        <h4>Flight Delay Prediction</h4>
+        <p>Time-series forecasting model for flight delays using historical aviation data and ensemble methods.</p>
+        <div class="tags"><span class="tag">Time Series</span><span class="tag">scikit-learn</span><span class="tag">XGBoost</span></div>
+      </div>
+      <div class="mini-card glass reveal">
+        <span class="badge-grad">Graduate &bull; Best Poster</span>
+        <h4>Heart Disease Prediction</h4>
+        <p>CNN-based diagnostic model for cardiovascular disease classification. Won Best Poster at university symposium.</p>
+        <div class="tags"><span class="tag">CNN</span><span class="tag">TensorFlow</span><span class="tag">Healthcare</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section id="contact" class="contact">
+  <div class="container">
+    <p class="section-label">Get in Touch</p>
+    <h2 style="color:#fff">Let's Connect</h2>
+    <p>Open to Senior AI/ML Engineer opportunities. Let's build something great.</p>
+    <div class="contact-links">
+      <a href="mailto:krysh1998@gmail.com" class="c-link primary">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+        krysh1998@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/kryshr" target="_blank" class="c-link">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/kryshr" target="_blank" class="c-link">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer><p>&copy; 2026 Krysh Rajendran</p></footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
