@@ -22,8 +22,8 @@
   --border: rgba(255,255,255,.08);
   --border-hover: rgba(255,255,255,.15);
   --text: #EDEDED;
-  --muted: #888;
-  --dim: #555;
+  --muted: #aaa;
+  --dim: #777;
   --blue: #3B82F6;
   --blue-bright: #60A5FA;
   --purple: #8B5CF6;
@@ -145,7 +145,7 @@ section { padding: 80px 0; }
 .impact-label { font-size: 11px; color: var(--dim); margin-top: 1px; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tag {
-  font-size: 11px; font-weight: 500; color: #777; padding: 4px 10px;
+  font-size: 11px; font-weight: 500; color: #999; padding: 4px 10px;
   background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 6px;
 }
 
@@ -419,7 +419,7 @@ section { padding: 80px 0; }
 .more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .mini-card { padding: 24px; }
 .mini-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; letter-spacing: -.3px; color: #fff; }
-.mini-card p { font-size: 13px; color: #666; line-height: 1.55; margin-bottom: 12px; }
+.mini-card p { font-size: 13px; color: #999; line-height: 1.55; margin-bottom: 12px; }
 .mini-card .tags { gap: 5px; }
 .mini-card .tag { font-size: 10px; padding: 3px 8px; }
 .badge-grad {
@@ -475,7 +475,7 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   .nav-links.open { display: flex; }
   .nav-toggle { display: block; }
   .chat-sidebar, .dash-sidebar { display: none; }
-  .impact-row { flex-direction: column; }
+  .impact-row { flex-direction: row; flex-wrap: wrap; }
   .hero { padding: 120px 20px 48px; min-height: auto; }
   .hero h1 { font-size: 36px; letter-spacing: -1px; }
   .hero-sub { font-size: 16px; }
@@ -504,8 +504,9 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   .agent-card .project-info-inner { gap: 12px; }
   .project-card { margin-bottom: 32px; }
   .mockup-frame { border-radius: 8px; }
-  .impact-item { padding: 8px 12px; }
+  .impact-item { padding: 8px 12px; flex: 1; min-width: 120px; }
   .impact-value { font-size: 18px; }
+  .impact-label { font-size: 10px; }
 }
 
 /* ── Animations ── */
