@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SPNY5SJVH2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SPNY5SJVH2');
+</script>
 <title>Krysh Rajendran — AI & Data Science Engineer</title>
 <meta name="description" content="Production AI systems, LLM agents, anomaly detection, and automated pipelines.">
 <meta property="og:title" content="Krysh Rajendran — AI & ML Engineering Portfolio">
@@ -1025,6 +1033,146 @@ const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ── GA4 Custom Event Tracking ── */
+
+// Session tracking state
+const sessionId = Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+const sessionStart = new Date();
+const viewed = { sections: new Set(), projects: new Set(), clicks: [], maxScroll: 0 };
+const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1490512695970238568/xRlsw0wLaBTW9AvObPZEArtdZbQ_KlzgXLBL5PbEzFNfkh2RzUzfp6UNj6bSn3hgg5b9';
+
+function getDeviceType() {
+  const w = window.innerWidth;
+  if (w <= 600) return 'Mobile';
+  if (w <= 900) return 'Tablet';
+  return 'Desktop';
+}
+
+function sendDiscord(payload) {
+  const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+  navigator.sendBeacon(DISCORD_WEBHOOK, blob);
+}
+
+// Send session start notification
+(async () => {
+  let loc = 'Unknown';
+  let org = 'Unknown';
+  try {
+    const res = await fetch('https://ipapi.co/json/');
+    const geo = await res.json();
+    loc = `${geo.city || '?'}, ${geo.region || ''} ${geo.country_name || geo.country || ''}`.trim();
+    org = geo.org || 'Unknown';
+  } catch(e) {}
+
+  const referrer = document.referrer ? new URL(document.referrer).hostname : 'Direct';
+
+  sendDiscord({
+    embeds: [{
+      title: '👀 New Visitor',
+      color: 0x3B82F6,
+      fields: [
+        { name: 'Location', value: loc, inline: true },
+        { name: 'Organization', value: org, inline: true },
+        { name: 'Device', value: `${getDeviceType()} (${window.innerWidth}x${window.innerHeight})`, inline: true },
+        { name: 'Referrer', value: referrer, inline: true },
+        { name: 'Browser', value: navigator.userAgent.split(') ')[0].split('(')[1] || 'Unknown', inline: false }
+      ],
+      footer: { text: `Session ${sessionId}` },
+      timestamp: sessionStart.toISOString()
+    }]
+  });
+})();
+
+// Section visibility tracking
+const sectionObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const section = e.target.tagName === 'SECTION' ? e.target : e.target.closest('section');
+      const name = section?.id || section?.className?.split(' ')[0] || 'unknown';
+      gtag('event', 'section_view', { section_name: name });
+      viewed.sections.add(name);
+      sectionObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('section').forEach(el => sectionObs.observe(el));
+
+// Project card view tracking
+const cardObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const h3 = e.target.querySelector('h3');
+      const name = h3 ? h3.textContent.trim() : 'unknown';
+      gtag('event', 'project_view', { project_name: name });
+      viewed.projects.add(name);
+      cardObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.project-card').forEach(el => cardObs.observe(el));
+
+// CTA and link click tracking
+document.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    const href = link.getAttribute('href') || '';
+    if (href.startsWith('mailto:')) {
+      gtag('event', 'contact_click', { method: 'email' });
+      viewed.clicks.push('📧 Email');
+    } else if (href.includes('linkedin.com')) {
+      gtag('event', 'contact_click', { method: 'linkedin' });
+      viewed.clicks.push('💼 LinkedIn');
+    } else if (href.includes('github.com')) {
+      gtag('event', 'contact_click', { method: 'github' });
+      viewed.clicks.push('🐙 GitHub');
+    } else if (href.startsWith('#')) {
+      gtag('event', 'nav_click', { destination: href });
+    }
+  });
+});
+
+// Scroll depth milestones
+const scrollMilestones = [25, 50, 75, 100];
+const firedMilestones = new Set();
+window.addEventListener('scroll', () => {
+  const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+  if (scrollPercent > viewed.maxScroll) viewed.maxScroll = scrollPercent;
+  scrollMilestones.forEach(m => {
+    if (scrollPercent >= m && !firedMilestones.has(m)) {
+      firedMilestones.add(m);
+      gtag('event', 'scroll_depth', { percent: m });
+    }
+  });
+});
+
+// Send session end notification
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState !== 'hidden') return;
+  const duration = Math.round((Date.now() - sessionStart.getTime()) / 1000);
+  const mins = Math.floor(duration / 60);
+  const secs = duration % 60;
+  const timeStr = mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+
+  const sections = viewed.sections.size > 0 ? [...viewed.sections].join(', ') : 'None';
+  const projects = viewed.projects.size > 0 ? [...viewed.projects].join('\n') : 'None';
+  const clicks = viewed.clicks.length > 0 ? viewed.clicks.join(', ') : 'None';
+
+  sendDiscord({
+    embeds: [{
+      title: '🚪 Visitor Left',
+      color: 0xEF4444,
+      fields: [
+        { name: 'Time Spent', value: timeStr, inline: true },
+        { name: 'Scroll Depth', value: `${viewed.maxScroll}%`, inline: true },
+        { name: 'Sections Viewed', value: sections, inline: false },
+        { name: 'Projects Viewed', value: projects, inline: false },
+        { name: 'Links Clicked', value: clicks, inline: false }
+      ],
+      footer: { text: `Session ${sessionId}` },
+      timestamp: new Date().toISOString()
+    }]
+  });
+});
 </script>
 </body>
 </html>
