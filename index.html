@@ -1050,17 +1050,12 @@ function getDeviceType() {
 }
 
 function sendDiscord(payload) {
-  // Use fetch for session start, sendBeacon for session end (page close)
-  if (document.visibilityState === 'hidden') {
-    const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-    navigator.sendBeacon(DISCORD_PROXY, blob);
-  } else {
-    fetch(DISCORD_PROXY, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(() => {});
-  }
+  fetch(DISCORD_PROXY, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    keepalive: true
+  }).catch(() => {});
 }
 
 // Send session start notification
