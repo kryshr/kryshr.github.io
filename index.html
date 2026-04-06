@@ -461,6 +461,26 @@ section { padding: 80px 0; }
 .c-link.primary:hover { box-shadow: 0 8px 30px rgba(59,130,246,.35); background: var(--blue-bright); color: #fff; }
 .c-link svg { width: 16px; height: 16px; }
 
+/* ── Contact Form ── */
+.contact-form { max-width: 480px; margin: 0 auto; text-align: left; }
+.contact-form input, .contact-form textarea {
+  width: 100%; padding: 12px 16px; border-radius: 10px; border: 1.5px solid var(--border);
+  background: rgba(255,255,255,.03); color: var(--text); font-family: 'Inter', sans-serif;
+  font-size: 14px; transition: border-color .2s; outline: none; margin-bottom: 12px;
+}
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--dim); }
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--blue); }
+.contact-form textarea { resize: vertical; min-height: 120px; }
+.contact-form button {
+  width: 100%; padding: 13px; border-radius: 100px; border: none; cursor: pointer;
+  background: var(--blue); color: #fff; font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 600; transition: all .2s;
+}
+.contact-form button:hover { background: var(--blue-bright); box-shadow: 0 8px 30px rgba(59,130,246,.35); }
+.contact-form button:disabled { opacity: .6; cursor: not-allowed; }
+.form-status { text-align: center; margin-top: 12px; font-size: 13px; }
+.form-divider { color: var(--dim); font-size: 13px; margin: 28px 0 20px; text-align: center; }
+
 /* ── Footer ── */
 footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-size: 12px; color: #333; position: relative; z-index: 1; }
 
@@ -1009,6 +1029,14 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
     <p class="section-label">Get in Touch</p>
     <h2 style="color:#fff">Let's Connect</h2>
     <p>Open to Senior AI/ML Engineer opportunities. Let's build something great.</p>
+    <form class="contact-form" id="contactForm">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <textarea name="message" placeholder="Your message..." required></textarea>
+      <button type="submit">Send Message</button>
+      <p class="form-status" id="formStatus"></p>
+    </form>
+    <p class="form-divider">or reach out directly</p>
     <div class="contact-links">
       <a href="mailto:krysh1998@gmail.com" class="c-link primary">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
@@ -1154,6 +1182,45 @@ window.addEventListener('scroll', () => {
       gtag('event', 'scroll_depth', { percent: m });
     }
   });
+});
+
+// Contact form submission
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  const status = document.getElementById('formStatus');
+  const data = Object.fromEntries(new FormData(e.target));
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    await fetch(DISCORD_PROXY, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        embeds: [{
+          title: '✉️ New Contact Form Message',
+          color: 0x10B981,
+          fields: [
+            { name: 'Name', value: data.name, inline: true },
+            { name: 'Email', value: data.email, inline: true },
+            { name: 'Message', value: data.message, inline: false }
+          ],
+          timestamp: new Date().toISOString()
+        }]
+      })
+    });
+    status.style.color = '#10B981';
+    status.textContent = 'Message sent! I\'ll get back to you soon.';
+    e.target.reset();
+    gtag('event', 'contact_form_submit');
+  } catch(err) {
+    status.style.color = '#EF4444';
+    status.textContent = 'Failed to send. Please try email instead.';
+  }
+  btn.disabled = false;
+  btn.textContent = 'Send Message';
 });
 
 // Send session end notification
