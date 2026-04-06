@@ -1040,7 +1040,7 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 const sessionId = Date.now() + '-' + Math.random().toString(36).substr(2, 9);
 const sessionStart = new Date();
 const viewed = { sections: new Set(), projects: new Set(), clicks: [], maxScroll: 0 };
-const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1490512695970238568/xRlsw0wLaBTW9AvObPZEArtdZbQ_KlzgXLBL5PbEzFNfkh2RzUzfp6UNj6bSn3hgg5b9';
+const DISCORD_PROXY = 'https://portfolio-discord-proxy.krysh1998.workers.dev';
 
 function getDeviceType() {
   const w = window.innerWidth;
@@ -1050,8 +1050,17 @@ function getDeviceType() {
 }
 
 function sendDiscord(payload) {
-  const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-  navigator.sendBeacon(DISCORD_WEBHOOK, blob);
+  // Use fetch for session start, sendBeacon for session end (page close)
+  if (document.visibilityState === 'hidden') {
+    const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+    navigator.sendBeacon(DISCORD_PROXY, blob);
+  } else {
+    fetch(DISCORD_PROXY, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  }
 }
 
 // Send session start notification
