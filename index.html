@@ -1049,13 +1049,20 @@ function getDeviceType() {
   return 'Desktop';
 }
 
-function sendDiscord(payload) {
-  fetch(DISCORD_PROXY, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-    keepalive: true
-  }).catch(() => {});
+function sendDiscord(payload, urgent) {
+  const body = JSON.stringify(payload);
+  if (urgent) {
+    // For page close — sendBeacon is most reliable
+    const blob = new Blob([body], { type: 'application/json' });
+    navigator.sendBeacon(DISCORD_PROXY, blob);
+  } else {
+    fetch(DISCORD_PROXY, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body,
+      keepalive: true
+    }).catch(() => {});
+  }
 }
 
 // Send session start notification
@@ -1175,7 +1182,7 @@ document.addEventListener('visibilitychange', () => {
       footer: { text: `Session ${sessionId}` },
       timestamp: new Date().toISOString()
     }]
-  });
+  }, true);
 });
 </script>
 </body>
