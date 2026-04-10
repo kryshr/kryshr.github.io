@@ -47,8 +47,8 @@ The current hero leads with a job title, not a hook. A recruiter scanning for 5 
 ```
 Badge:   Miami, FL · AI & Data Science    (unchanged)
 H1:      Krysh Rajendran                  (unchanged)
-Sub:     AI Engineer building production ML systems for e-commerce.
-         Recent work: $15M+ in projected incremental revenue.
+Sub:     AI Engineer. Built production ML systems projected to drive
+         $15M+ in incremental e-commerce revenue.
 Tagline: (removed)
 ```
 
@@ -68,7 +68,7 @@ The featured-projects section keeps four cards. The lineup, in order, is:
 1. **Predictive Customer Intelligence Engine** (NEW — stacked hero layout)
 2. **NL-to-SQL AI Agent** (existing — demoted from #1, becomes side-by-side)
 3. **Real-Time Anomaly Detection Dashboard** (existing — stays at #3, side-by-side, mockup unchanged)
-4. **Q4 Executive Reporting Pipeline** (REPLACES the existing "Automated Report Pipeline" card — side-by-side, new mockup)
+4. **Automated Executive Reporting Engine** (REPLACES the existing "Automated Report Pipeline" card — side-by-side, new mockup)
 
 The Full-Stack Ecommerce Platform is removed from Featured and added to More Work as a mini-card.
 
@@ -87,7 +87,7 @@ The Full-Stack Ecommerce Platform is removed from Featured and added to More Wor
 | Value | Label |
 |---|---|
 | `$15M+` | Projected Annual Incremental Revenue |
-| `0.97–0.99` | Model AUC (7 categories) |
+| `0.89 AUC` | Peak Model Performance |
 | `12K/wk` | Bookings Scored |
 
 **Tags:** Python · H2O AutoML · GBM · BigQuery · scikit-learn · Feature Engineering · A/B Testing
@@ -100,11 +100,11 @@ The Full-Stack Ecommerce Platform is removed from Featured and added to More Wor
 
 **Description (NEW):**
 
-> Replaced hours of daily ad-hoc analyst work with a conversational analytics agent that translates business questions into BigQuery SQL, runs the queries, and writes the insight bullets back. Cut reporting workload **60%** across the post-booking e-commerce team. A Deep Analysis mode runs a 6-phase root-cause loop (Decompose → Temporal → Segment → Drill → Confirm → Conclude) up to 10 steps deep, tracking hypotheses across iterations and exiting early when the answer is clear.
+> Replaced **4 hours** of daily manual reporting with a conversational analytics agent that handles **80%** of ad-hoc data questions across the post-booking e-commerce team. Translates business questions into BigQuery SQL, runs the queries, and writes the insight bullets back. A Deep Analysis mode runs a 6-phase root-cause loop (Decompose → Temporal → Segment → Drill → Confirm → Conclude) up to 10 steps deep, tracking hypotheses across iterations and exiting early when the answer is clear.
 
 **Impact bullets:** `60%` Reporting Automated · `10-step` Autonomous Reasoning *(unchanged)*
 
-**Tags (UPDATED):** Python · Claude Opus 4.6 · LangChain · BigQuery · Plotly · Streamlit
+**Tags (UPDATED):** Python · Claude Opus 4.6 · BigQuery · Plotly · Streamlit
 
 **Mockup:** unchanged.
 
@@ -130,11 +130,11 @@ The Full-Stack Ecommerce Platform is removed from Featured and added to More Wor
 
 **Mockup:** unchanged.
 
-### Card #4 — Q4 Executive Reporting Pipeline *(REPLACES old Report Pipeline)*
+### Card #4 — Automated Executive Reporting Engine *(REPLACES old Report Pipeline)*
 
 **Layout:** Side-by-side. Replaces the existing "Automated Report Pipeline" card content and mockup entirely.
 
-**Title:** Q4 Executive Reporting Pipeline
+**Title:** Automated Executive Reporting Engine
 
 **Description:**
 
@@ -144,9 +144,9 @@ The Full-Stack Ecommerce Platform is removed from Featured and added to More Wor
 
 | Value | Label |
 |---|---|
-| `Days → Minutes` | Reporting Cycle Time |
-| `5 KPIs` | YoY Computed Across Categories |
-| `Auto-Narrative` | Claude-Generated Insights |
+| `Days → Minutes` | Reporting Turnaround |
+| `AI-Authored` | Executive Narrative |
+| `5 KPIs · 7 Categories` | YoY Coverage |
 
 **Tags:** Python · Claude API · BigQuery · Pandas · Parquet
 
@@ -179,10 +179,10 @@ Northwind Voyages is a fabricated cruise-line brand. No real employer numbers or
 **Main panel — three sections**
 
 1. **Model Performance card** (top)
-   - Big number: `0.97–0.99` AUC
-   - Subtitle: `7 GBM classifiers · H2O AutoML · 5-fold CV`
+   - Big number: `0.89 AUC`
+   - Subtitle: `Peak performance · 7 GBM classifiers · H2O AutoML · out-of-time validated`
    - Chip row underneath: 7 small category pills (Photo, Beverage, Spa, Internet, Excursions, Dining, Delights)
-   - Single hero stat — no per-category leaderboard, because per-category breakdowns at 0.97–0.99 are not available as defensible numbers from the source material.
+   - Single hero stat instead of a per-category leaderboard — keeps the focus on the headline number.
 
 2. **Weekly Targeting Funnel** (middle)
    - Header: *Weekly Targeting Funnel*
@@ -206,7 +206,7 @@ Northwind Voyages is a fabricated cruise-line brand. No real employer numbers or
 
 **Color treatment:** blue for primary chrome and bars, green for positive deltas, subtle purple tint on the funnel only (matches existing data-viz convention). All chrome uses existing `mockup-frame` / glass-card styling and CSS variables.
 
-### Mockup B — Q4 Executive Reporting Pipeline *(Card #4)*
+### Mockup B — Automated Executive Reporting Engine *(Card #4)*
 
 **Browser frame label:** `Q4 Executive Brief — generated 2026-04-08`
 
@@ -303,5 +303,4 @@ Git history is the rollback. No `versions/pre-refresh-*.html` snapshot is create
 ## Open risks
 
 1. **Mobile 3-impact-bullet layout.** Three impact bullets on a 393px screen may be tight. Mitigation: verify with Playwright before committing; fall back to 2-bullet rows or stacked layout if needed.
-2. **AUC discrepancy in source material.** The user's CLAUDE.md lists out-of-time AUC as 0.81–0.89, while the user's hand-fed write-up says 0.97–0.99. This spec uses the user's hand-fed value (0.97–0.99) per their explicit instruction to use the info provided. If asked in an interview, the user should be ready to clarify whether the headline number is cross-validated AUC or out-of-time AUC.
-3. **Q4 Reporting Pipeline mockup is fully fabricated.** The category names (Beverage Package, etc.) come from the cruise domain. The numbers shown in the mockup (KPI deltas, exact percentages) are illustrative and not real MSC data. Same convention as the other mockups.
+2. **Mockup numbers are illustrative.** The Northwind Voyages cruise frame and the Executive Brief mockup both use fabricated company names and illustrative numbers, matching the existing convention across all other mockups on the site. No real employer data appears anywhere.
