@@ -722,14 +722,15 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
       <div class="project-layout">
         <div class="project-info">
           <h3>Real-Time Anomaly Detection Dashboard</h3>
-          <p>Production monitoring dashboard tracking hourly e-commerce KPIs with statistical anomaly detection. Uses sigma bands against prior-5-week baselines, 3-tier severity classification, crash detection, and multi-dimensional drill-down. Deployed on Google Cloud Run.</p>
-          <div class="impact-row">
-            <div class="impact-item"><div class="impact-value accent">1.5hr &rarr; 3min</div><div class="impact-label">Data Refresh Time</div></div>
+          <p>Replaced a 30-minute Power BI refresh and "stare-at-charts" monitoring with a custom hourly anomaly detection dashboard for 5&ndash;10 internal users. Tracks Shoppers, Purchasers, and CVR against statistical baselines using two methods (Prior-5-Week and Rolling-Days), with three severity tiers, automatic crash detection, and a red/amber/green health banner that loads in under a second. A background daemon refreshes data server-side every hour so operators always see fresh numbers.</p>
+          <div class="impact-row impact-row-3">
+            <div class="impact-item"><div class="impact-value accent">30min &rarr; 1min</div><div class="impact-label">Refresh (30x faster)</div></div>
+            <div class="impact-item"><div class="impact-value accent">$54 vs $4,995</div><div class="impact-label">Monthly Cost</div></div>
             <div class="impact-item"><div class="impact-value accent">3-Tier</div><div class="impact-label">Severity System</div></div>
           </div>
           <div class="tags">
             <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">BigQuery</span>
-            <span class="tag">Cloud Run</span><span class="tag">Plotly</span><span class="tag">Statistical Analysis</span>
+            <span class="tag">Cloud Run</span><span class="tag">GCS</span><span class="tag">Plotly</span><span class="tag">Cloud Build</span>
           </div>
         </div>
         <div class="project-mockup">
