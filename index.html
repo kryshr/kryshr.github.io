@@ -335,6 +335,56 @@ section { padding: 80px 0; }
 }
 .anom-table td { padding: 5px 8px; color: #999; border-bottom: 1px solid rgba(255,255,255,.03); }
 
+/* ── Executive Brief Mockup (Q4 Reporting) ── */
+.exec-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 16px; background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(139,92,246,.04));
+  border-bottom: 1px solid var(--border);
+}
+.exec-header strong { color: #fff; font-size: 12px; letter-spacing: -.2px; }
+.exec-badge {
+  font-size: 9px; color: var(--blue-bright); padding: 3px 8px;
+  background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2);
+  border-radius: 100px; font-weight: 600;
+}
+.exec-body { padding: 14px; }
+.exec-kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 12px; }
+.exec-kpi {
+  padding: 8px 6px; background: rgba(255,255,255,.03);
+  border: 1px solid var(--border); border-radius: 6px; text-align: center;
+}
+.exec-kpi-label { font-size: 7px; color: #555; text-transform: uppercase; letter-spacing: .5px; }
+.exec-kpi-val { font-size: 13px; font-weight: 700; color: #fff; margin: 2px 0; }
+.exec-kpi-delta { font-size: 8px; font-weight: 600; }
+.exec-section-title { font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin: 10px 0 6px; font-weight: 600; }
+.exec-yoy-table { width: 100%; border-collapse: collapse; font-size: 10px; margin-bottom: 10px; }
+.exec-yoy-table th { text-align: left; padding: 4px 6px; color: #555; font-weight: 600; font-size: 9px; text-transform: uppercase; letter-spacing: .5px; border-bottom: 1px solid var(--border); }
+.exec-yoy-table td { padding: 5px 6px; color: #aaa; border-bottom: 1px solid rgba(255,255,255,.04); }
+.exec-yoy-table .delta-up { color: var(--green); font-weight: 600; }
+.exec-yoy-table .delta-down { color: var(--red); font-weight: 600; }
+.exec-narrative {
+  position: relative;
+  background: rgba(59,130,246,.04);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  padding: 10px 12px;
+  font-size: 10px; color: #aaa; line-height: 1.55;
+  margin-bottom: 10px;
+}
+.exec-narrative .auto-tag {
+  position: absolute; top: 6px; right: 8px;
+  font-size: 8px; color: var(--blue-bright); font-weight: 600;
+}
+.exec-narrative p { margin: 0 0 6px 0; }
+.exec-narrative p:last-child { margin: 0; }
+.exec-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.exec-action-chip {
+  font-size: 9px; padding: 4px 10px;
+  background: rgba(59,130,246,.06);
+  border: 1px solid rgba(59,130,246,.15);
+  border-radius: 100px; color: var(--blue-bright);
+}
+
 /* ── Email Report Mockup ── */
 .email-header {
   background: var(--navy); border-bottom: 3px solid var(--gold);
@@ -489,6 +539,7 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   .project-mockup { border-left: none; border-top: 1px solid var(--border); }
   .more-grid { grid-template-columns: repeat(2, 1fr); }
   .email-kpis { grid-template-columns: repeat(2, 1fr); }
+  .exec-kpis { grid-template-columns: repeat(3, 1fr); }
   .agent-card .project-info-inner { flex-direction: column; gap: 16px; }
   .agent-card .project-info-metrics { flex-direction: row; min-width: unset; flex-wrap: wrap; }
   .ecom-layout { min-height: auto; }
@@ -519,6 +570,7 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   .chat-layout { height: auto; min-height: 300px; }
   .dash-layout { min-height: auto; flex-direction: column; }
   .email-kpis { grid-template-columns: repeat(2, 1fr); }
+  .exec-kpis { grid-template-columns: repeat(2, 1fr); }
   .email-header { flex-direction: column; gap: 4px; }
   .email-header span { font-size: 9px; }
   .ecom-banner .promo { position: static; margin-top: 6px; display: inline-block; }
@@ -808,67 +860,65 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
       </div>
     </div>
 
-    <!-- ═══ 3. Automated Report Pipeline ═══ -->
+    <!-- ═══ 3. Automated Executive Reporting Engine ═══ -->
     <div class="project-card glass reveal">
       <div class="project-layout">
         <div class="project-info">
-          <h3>Automated Report Pipeline</h3>
-          <p>Python-based system that generates self-contained HTML email reports with embedded charts, KPI cards, sparklines, and treemaps. Pulls data from BigQuery, renders visual summaries, and auto-delivers to stakeholders daily — replacing manual Excel-based reporting.</p>
-          <div class="impact-row">
-            <div class="impact-item"><div class="impact-value accent">Daily</div><div class="impact-label">Automated Delivery</div></div>
-            <div class="impact-item"><div class="impact-value accent">100%</div><div class="impact-label">Hands-free</div></div>
+          <h3>Automated Executive Reporting Engine</h3>
+          <p>Replaced days of manual quarterly reporting with an automated pipeline that pulls category-level data from BigQuery, computes YoY deltas across Revenue, Shoppers, Purchasers, CVR, and RPPS, then generates the executive narrative with Claude. Surfaces category-level drivers and action items that would otherwise get missed in a manual scrub &mdash; and the narrative quality stays consistent regardless of who runs it.</p>
+          <div class="impact-row impact-row-3">
+            <div class="impact-item"><div class="impact-value accent">Days &rarr; Minutes</div><div class="impact-label">Reporting Turnaround</div></div>
+            <div class="impact-item"><div class="impact-value accent">AI-Authored</div><div class="impact-label">Executive Narrative</div></div>
+            <div class="impact-item"><div class="impact-value accent">5 KPIs &middot; 7 Cats</div><div class="impact-label">YoY Coverage</div></div>
           </div>
           <div class="tags">
-            <span class="tag">Python</span><span class="tag">BigQuery</span>
-            <span class="tag">HTML/CSS</span><span class="tag">Plotly</span>
-            <span class="tag">SMTP</span><span class="tag">Scheduled Jobs</span>
+            <span class="tag">Python</span><span class="tag">Claude API</span>
+            <span class="tag">BigQuery</span><span class="tag">Pandas</span>
+            <span class="tag">Parquet</span>
           </div>
         </div>
         <div class="project-mockup">
           <div class="mockup-frame">
             <div class="mockup-bar">
               <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
-              <span class="mockup-label">Daily Report — Apr 3, 2026</span>
+              <span class="mockup-label">Q4 Executive Brief &mdash; generated 2026-04-08</span>
             </div>
             <div class="mockup-body">
-              <div class="email-header">
-                <strong>Daily KPI Report — Acme Corp</strong>
-                <span>From: reports@acme.io &bull; 6:00 AM ET</span>
+              <div class="exec-header">
+                <strong>Q4 2025 vs Q4 2024 &mdash; Executive Brief</strong>
+                <span class="exec-badge">&#9889; Auto-generated</span>
               </div>
-              <div class="email-body">
-                <div class="email-kpis">
-                  <div class="email-kpi"><div class="ek-label">Revenue</div><div class="ek-val" style="color:var(--green)">$842K</div><div class="ek-delta" style="color:var(--green)">+6.2% YoY</div></div>
-                  <div class="email-kpi"><div class="ek-label">Orders</div><div class="ek-val">3,417</div><div class="ek-delta" style="color:var(--green)">+3.8% YoY</div></div>
-                  <div class="email-kpi"><div class="ek-label">AOV</div><div class="ek-val">$246</div><div class="ek-delta" style="color:var(--green)">+2.3%</div></div>
-                  <div class="email-kpi"><div class="ek-label">Return Rate</div><div class="ek-val">4.1%</div><div class="ek-delta" style="color:var(--red)">+0.8pp</div></div>
+              <div class="exec-body">
+                <div class="exec-kpis">
+                  <div class="exec-kpi"><div class="exec-kpi-label">Revenue</div><div class="exec-kpi-val">$24.8M</div><div class="exec-kpi-delta" style="color:var(--green)">+18.2%</div></div>
+                  <div class="exec-kpi"><div class="exec-kpi-label">Shoppers</div><div class="exec-kpi-val">142K</div><div class="exec-kpi-delta" style="color:var(--green)">+9.4%</div></div>
+                  <div class="exec-kpi"><div class="exec-kpi-label">Purchasers</div><div class="exec-kpi-val">28.1K</div><div class="exec-kpi-delta" style="color:var(--green)">+12.7%</div></div>
+                  <div class="exec-kpi"><div class="exec-kpi-label">CVR</div><div class="exec-kpi-val">19.8%</div><div class="exec-kpi-delta" style="color:var(--green)">+3.1pp</div></div>
+                  <div class="exec-kpi"><div class="exec-kpi-label">RPPS</div><div class="exec-kpi-val">$174</div><div class="exec-kpi-delta" style="color:var(--green)">+5.6%</div></div>
                 </div>
-                <div class="email-section-title">Revenue by Category</div>
-                <svg width="100%" height="70" viewBox="0 0 380 70" style="margin-bottom:8px">
-                  <rect x="0" y="0" width="155" height="70" rx="4" fill="var(--blue)" opacity=".7"/>
-                  <text x="78" y="30" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">Electronics</text>
-                  <text x="78" y="42" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="6.5">$312K (37%)</text>
-                  <rect x="159" y="0" width="105" height="38" rx="4" fill="var(--purple)" opacity=".7"/>
-                  <text x="212" y="18" text-anchor="middle" fill="#fff" font-size="7" font-weight="600">Apparel</text>
-                  <text x="212" y="28" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="6">$198K (24%)</text>
-                  <rect x="159" y="42" width="105" height="28" rx="4" fill="#93c5fd" opacity=".6"/>
-                  <text x="212" y="58" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">Home $147K</text>
-                  <rect x="268" y="0" width="112" height="42" rx="4" fill="var(--blue-bright)" opacity=".65"/>
-                  <text x="324" y="18" text-anchor="middle" fill="#fff" font-size="7" font-weight="600">Sports</text>
-                  <text x="324" y="28" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="6">$118K (14%)</text>
-                  <rect x="268" y="46" width="112" height="24" rx="4" fill="#0e9aaa" opacity=".5"/>
-                  <text x="324" y="61" text-anchor="middle" fill="#fff" font-size="6">Other $67K</text>
-                </svg>
-                <div class="email-section-title">7-Day Revenue Trend</div>
-                <svg width="100%" height="40" viewBox="0 0 380 40" style="margin-bottom:8px">
-                  <polyline points="10,32 60,27 120,25 180,20 230,16 290,13 350,8" fill="none" stroke="url(#sg)" stroke-width="2" stroke-linecap="round"/>
-                  <defs><linearGradient id="sg" x1="0%" y1="0%" x2="100%"><stop offset="0%" stop-color="var(--blue)"/><stop offset="100%" stop-color="var(--blue-bright)"/></linearGradient></defs>
-                  <circle cx="350" cy="8" r="3" fill="var(--blue-bright)"/>
-                  <text x="356" y="10" fill="var(--blue-bright)" font-size="6" font-weight="600">$842K</text>
-                  <text x="10" y="38" fill="#444" font-size="5">Mon</text>
-                  <text x="120" y="38" fill="#444" font-size="5">Wed</text>
-                  <text x="230" y="38" fill="#444" font-size="5">Fri</text>
-                  <text x="350" y="38" fill="#444" font-size="5">Sun</text>
-                </svg>
+                <div class="exec-section-title">Category YoY Highlights</div>
+                <table class="exec-yoy-table">
+                  <thead>
+                    <tr><th>Category</th><th>Metric</th><th>YoY</th><th>Note</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Beverage Package</td><td>Revenue</td><td class="delta-up">+435%</td><td>Premium pkg breakthrough</td></tr>
+                    <tr><td>Premium Drink Pkg</td><td>Revenue</td><td class="delta-up">+212%</td><td>New SKU launched Q3</td></tr>
+                    <tr><td>Excursions</td><td>CVR</td><td class="delta-down">&minus;11%</td><td>Product mix shift</td></tr>
+                    <tr><td>Internet</td><td>Revenue</td><td class="delta-up">+4.2%</td><td>Stable</td></tr>
+                  </tbody>
+                </table>
+                <div class="exec-narrative">
+                  <span class="auto-tag">&#10024; Claude</span>
+                  <p><strong>Q4 was driven primarily by Beverage Package growth (+435% YoY)</strong>, with the new Premium Drink package (launched in Q3) accounting for the bulk of the lift. CVR expansion of +3.1pp suggests intent quality is improving, not just volume.</p>
+                  <p>The Excursions category warrants attention &mdash; CVR is down 11% YoY, traceable to a product mix shift toward higher-priced shore excursions that convert at a lower rate. Recommend revisiting the excursion landing page to surface mid-tier options.</p>
+                </div>
+                <div class="exec-section-title">Action Items</div>
+                <div class="exec-actions">
+                  <span class="exec-action-chip">Double down on Premium Drink promo</span>
+                  <span class="exec-action-chip">Re-test Excursion landing mix</span>
+                  <span class="exec-action-chip">Brief CRM on Q1 carryover</span>
+                </div>
               </div>
             </div>
           </div>
