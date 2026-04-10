@@ -287,6 +287,90 @@ section { padding: 80px 0; }
   padding: 6px 10px; font-size: 10px; color: var(--blue-bright); line-height: 1.45; margin-top: 4px;
 }
 
+/* ── Targeting Console Mockup (Predictive Customer Intelligence) ── */
+.tc-layout { display: flex; flex-direction: column; min-height: 420px; }
+.tc-top { display: flex; flex: 1; min-height: 0; }
+.tc-sidebar {
+  width: 160px; min-width: 160px;
+  background: rgba(255,255,255,.02);
+  border-right: 1px solid var(--border);
+  padding: 12px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.tc-brand {
+  font-weight: 700; font-size: 12px; color: #fff; text-align: center;
+  padding-bottom: 8px; border-bottom: 1px solid rgba(59,130,246,.2); margin-bottom: 8px;
+}
+.tc-brand span { color: var(--blue-bright); }
+.tc-chips { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 4px; }
+.tc-chip {
+  font-size: 8px; padding: 2px 6px;
+  background: rgba(59,130,246,.06);
+  border: 1px solid rgba(59,130,246,.15);
+  border-radius: 4px; color: var(--blue-bright);
+}
+.tc-tier-toggle {
+  display: flex; border-radius: 5px; overflow: hidden;
+  border: 1px solid rgba(59,130,246,.2); margin-bottom: 2px;
+}
+.tc-tier-toggle div {
+  flex: 1; text-align: center; padding: 3px 2px; font-size: 8px; color: #666;
+}
+.tc-tier-toggle .active { background: rgba(59,130,246,.12); color: var(--blue-bright); font-weight: 600; }
+.tc-stat-footer {
+  margin-top: auto; padding-top: 8px; border-top: 1px solid var(--border);
+  font-size: 9px; color: #888; line-height: 1.5;
+}
+.tc-stat-footer strong { color: #fff; }
+.tc-main { flex: 1; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+.tc-perf-card {
+  background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(139,92,246,.04));
+  border: 1px solid rgba(59,130,246,.2);
+  border-radius: 8px; padding: 12px 14px;
+}
+.tc-perf-title { font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-weight: 600; }
+.tc-perf-big { font-size: 24px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 4px; }
+.tc-perf-big .accent-blue { color: var(--blue-bright); }
+.tc-perf-sub { font-size: 9px; color: #888; margin-bottom: 8px; }
+.tc-perf-pills { display: flex; flex-wrap: wrap; gap: 4px; }
+.tc-perf-pill {
+  font-size: 8px; padding: 2px 7px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 100px; color: #aaa;
+}
+.tc-funnel-title { font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; font-weight: 600; }
+.tc-funnel-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.tc-funnel-bar {
+  height: 22px;
+  background: linear-gradient(90deg, var(--blue), rgba(139,92,246,.6));
+  border-radius: 4px;
+  display: flex; align-items: center; padding: 0 8px;
+  color: #fff; font-size: 10px; font-weight: 700;
+}
+.tc-funnel-label { font-size: 9px; color: #888; min-width: 100px; }
+.tc-tier-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+.tc-tier-table th { text-align: left; padding: 4px 6px; color: #555; font-weight: 600; font-size: 9px; text-transform: uppercase; letter-spacing: .5px; border-bottom: 1px solid var(--border); }
+.tc-tier-table td { padding: 5px 6px; color: #aaa; border-bottom: 1px solid rgba(255,255,255,.04); }
+.tc-tier-table .tier-high { color: var(--green); font-weight: 600; }
+.tc-tier-table .tier-med { color: var(--blue-bright); font-weight: 600; }
+.tc-tier-table .tier-lowmed { color: var(--gold); font-weight: 600; }
+.tc-tier-table .tier-low { color: #555; font-weight: 600; }
+.tc-action-bar {
+  display: flex; gap: 6px; padding: 8px 12px;
+  border-top: 1px solid var(--border); background: rgba(0,0,0,.3);
+  justify-content: flex-end;
+}
+.tc-btn {
+  font-size: 9px; padding: 5px 12px; border-radius: 5px;
+  background: var(--blue); color: #fff; font-weight: 600;
+  border: none; cursor: default;
+}
+.tc-btn-secondary {
+  background: rgba(255,255,255,.05); color: #aaa;
+  border: 1px solid var(--border);
+}
+
 /* ── Dashboard Mockup (Anomaly) ── */
 .dash-layout { display: flex; min-height: 380px; }
 .dash-sidebar {
@@ -556,6 +640,10 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   .nav-links.open { display: flex; }
   .nav-toggle { display: block; }
   .chat-sidebar, .dash-sidebar { display: none; }
+  .tc-top { flex-direction: column; }
+  .tc-sidebar { width: 100%; min-width: 0; border-right: none; border-bottom: 1px solid var(--border); flex-direction: row; flex-wrap: wrap; gap: 6px; padding: 10px; }
+  .tc-brand { width: 100%; text-align: left; padding-bottom: 4px; margin-bottom: 4px; }
+  .tc-stat-footer { width: 100%; margin-top: 4px; padding-top: 6px; border-top: none; }
   .impact-row { flex-direction: row; flex-wrap: wrap; }
   .hero { padding: 120px 20px 48px; min-height: auto; }
   .hero h1 { font-size: 36px; letter-spacing: -1px; }
@@ -636,6 +724,123 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   <div class="container">
     <p class="section-label">Featured Work</p>
     <h2 class="section-title">Projects</h2>
+
+    <!-- ═══ 1. Predictive Customer Intelligence Engine ═══ -->
+    <div class="project-card glass reveal agent-card">
+      <div class="project-layout">
+        <div class="project-info">
+          <div class="project-info-inner">
+            <div class="project-info-text">
+              <h3>Predictive Customer Intelligence Engine</h3>
+              <p>Identified <strong>$15M+</strong> in projected incremental revenue by replacing blanket post-booking outreach with weekly ML-scored audiences across 7 ancillary product categories. Trained 7 H2O AutoML classifiers on 2.2M historical browsing events, then routed each booking into a tiered marketing action &mdash; high intent gets a reminder, low-medium gets a promotional offer, and the rest fall out. A deterministic 80/20 target/control split lets the team measure true lift.</p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">H2O AutoML</span><span class="tag">GBM</span>
+                <span class="tag">BigQuery</span><span class="tag">scikit-learn</span><span class="tag">Feature Engineering</span>
+                <span class="tag">A/B Testing</span>
+              </div>
+            </div>
+            <div class="project-info-metrics">
+              <div class="impact-item"><div class="impact-value accent">$15M+</div><div class="impact-label">Projected Annual Incremental Revenue</div></div>
+              <div class="impact-item"><div class="impact-value accent">0.89 AUC</div><div class="impact-label">Peak Model Performance</div></div>
+              <div class="impact-item"><div class="impact-value accent">12K/wk</div><div class="impact-label">Bookings Scored</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="project-mockup">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+              <span class="mockup-label">Northwind Voyages &mdash; Customer Intelligence Console</span>
+            </div>
+            <div class="mockup-body">
+              <div class="tc-layout">
+                <div class="tc-top">
+                  <div class="tc-sidebar">
+                    <div class="tc-brand">Northwind<span>Voyages</span></div>
+                    <div class="cs-label">Week</div>
+                    <div class="cs-select">2026-W15</div>
+                    <div class="cs-label">Categories</div>
+                    <div class="tc-chips">
+                      <span class="tc-chip">Photo</span>
+                      <span class="tc-chip">Beverage</span>
+                      <span class="tc-chip">Spa</span>
+                      <span class="tc-chip">Internet</span>
+                      <span class="tc-chip">Excursions</span>
+                      <span class="tc-chip">Dining</span>
+                      <span class="tc-chip">Delights</span>
+                    </div>
+                    <div class="cs-label">Tier</div>
+                    <div class="tc-tier-toggle">
+                      <div class="active">High</div>
+                      <div>Med</div>
+                      <div>Low-Med</div>
+                      <div>Low</div>
+                    </div>
+                    <div class="cs-label">DTD Window</div>
+                    <div class="cs-select">4&ndash;30 days</div>
+                    <div class="cs-label">T/C Split</div>
+                    <div class="cs-select">80 / 20</div>
+                    <div class="tc-stat-footer">
+                      <strong>12,047</strong> scored<br>
+                      <strong>~10,000</strong> targeted
+                    </div>
+                  </div>
+                  <div class="tc-main">
+                    <div class="tc-perf-card">
+                      <div class="tc-perf-title">Model Performance</div>
+                      <div class="tc-perf-big"><span class="accent-blue">0.89</span> AUC</div>
+                      <div class="tc-perf-sub">Peak performance &middot; 7 GBM classifiers &middot; H2O AutoML &middot; out-of-time validated</div>
+                      <div class="tc-perf-pills">
+                        <span class="tc-perf-pill">Photo</span>
+                        <span class="tc-perf-pill">Beverage</span>
+                        <span class="tc-perf-pill">Spa</span>
+                        <span class="tc-perf-pill">Internet</span>
+                        <span class="tc-perf-pill">Excursions</span>
+                        <span class="tc-perf-pill">Dining</span>
+                        <span class="tc-perf-pill">Delights</span>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="tc-funnel-title">Weekly Targeting Funnel</div>
+                      <div class="tc-funnel-row">
+                        <div class="tc-funnel-bar" style="width: 100%;">49,000</div>
+                        <div class="tc-funnel-label">Browse Pool</div>
+                      </div>
+                      <div class="tc-funnel-row">
+                        <div class="tc-funnel-bar" style="width: 30%;">12,047</div>
+                        <div class="tc-funnel-label">DTD 4&ndash;30</div>
+                      </div>
+                      <div class="tc-funnel-row">
+                        <div class="tc-funnel-bar" style="width: 24%;">~10,000</div>
+                        <div class="tc-funnel-label">Eligible (post 80/20)</div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="tc-funnel-title">Tier &rarr; Action Map</div>
+                      <table class="tc-tier-table">
+                        <thead>
+                          <tr><th>Tier</th><th>Action</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td><span class="tier-high">High</span></td><td>Evergreen reminder (no discount)</td></tr>
+                          <tr><td><span class="tier-med">Medium</span></td><td>Soft nudge</td></tr>
+                          <tr><td><span class="tier-lowmed">Low-Medium</span></td><td>Promotional offer (incremental play)</td></tr>
+                          <tr><td><span class="tier-low">Low</span></td><td>Suppress (no email)</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="tc-action-bar">
+                  <div class="tc-btn tc-btn-secondary">&#128229; Export CSV</div>
+                  <div class="tc-btn">&#9654; Generate Weekly Target List</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ═══ 2. NL-to-SQL Agent ═══ -->
     <div class="project-card glass reveal">
@@ -921,89 +1126,6 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
       </div>
     </div>
 
-    <!-- ═══ 4. Full-Stack Ecommerce Platform ═══ -->
-    <div class="project-card glass reveal">
-      <div class="project-layout">
-        <div class="project-info">
-          <h3>Full-Stack Ecommerce Platform <span class="badge-personal">Personal</span></h3>
-          <p>Production-grade ecommerce system built from scratch. Features dual-market support with GeoIP routing, guest checkout, affiliate program with commission tracking, discount codes, store credits, abandoned cart recovery, email campaigns with open tracking, shipping label generation via carrier APIs, and a full admin dashboard with analytics.</p>
-          <div class="impact-row">
-            <div class="impact-item"><div class="impact-value accent">50+</div><div class="impact-label">Routes / Endpoints</div></div>
-            <div class="impact-item"><div class="impact-value accent">13+</div><div class="impact-label">Database Tables</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span>
-            <span class="tag">Vanilla JS</span><span class="tag">Docker</span><span class="tag">Jinja2</span>
-            <span class="tag">Resend</span><span class="tag">Shippo API</span><span class="tag">GeoIP</span>
-            <span class="tag">Playwright</span>
-          </div>
-        </div>
-        <div class="project-mockup">
-          <div class="mockup-frame">
-            <div class="mockup-bar">
-              <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
-              <span class="mockup-label">shop.example.com</span>
-            </div>
-            <div class="mockup-body">
-              <div class="ecom-layout">
-                <div class="ecom-header">
-                  <div class="ecom-brand">NovaBio</div>
-                  <div class="ecom-nav"><span>Shop</span><span>About</span><span>FAQ</span></div>
-                  <div class="ecom-icons">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
-                  </div>
-                </div>
-                <div class="ecom-body">
-                  <div class="ecom-banner">
-                    <h4>Research-Grade Compounds</h4>
-                    <p>Lab-tested &middot; COA included with every order</p>
-                    <div class="promo">WELCOME15 — 15% Off</div>
-                  </div>
-                  <div class="product-grid">
-                    <div class="p-card"><div class="p-img" style="background:rgba(99,102,241,.08)">&#9883;</div><div class="p-name">BPC-157</div><div class="p-meta">5mg vial</div><div class="p-price">$34.99</div><div class="p-btn">Add to Cart</div></div>
-                    <div class="p-card"><div class="p-img" style="background:rgba(34,197,94,.06)">&#9880;</div><div class="p-name">TB-500</div><div class="p-meta">5mg vial</div><div class="p-price">$42.99</div><div class="p-btn">Add to Cart</div></div>
-                    <div class="p-card"><div class="p-img" style="background:rgba(236,72,153,.06)">&#9878;</div><div class="p-name">GHK-Cu</div><div class="p-meta">200mg</div><div class="p-price">$28.50</div><div class="p-btn">Add to Cart</div></div>
-                  </div>
-                  <div class="ecom-admin-label">ADMIN DASHBOARD</div>
-                  <div class="ecom-stats">
-                    <div class="ecom-stat"><div class="es-val">$12.4K</div><div class="es-label">Revenue (7d)</div></div>
-                    <div class="ecom-stat"><div class="es-val">89</div><div class="es-label">Orders</div></div>
-                    <div class="ecom-stat"><div class="es-val">342</div><div class="es-label">Sessions</div></div>
-                    <div class="ecom-stat"><div class="es-val">4.2%</div><div class="es-label">CVR</div></div>
-                  </div>
-                  <div class="ecom-orders">
-                    <h5>Recent Orders</h5>
-                    <div class="order-row">
-                      <span class="order-id">#1047</span>
-                      <span class="order-items">2x BPC-157, 1x TB-500</span>
-                      <span class="order-total">$112.97</span>
-                      <span class="status-pill st-paid">Paid</span>
-                      <span class="status-pill st-ship" style="margin-left:4px">Shipped</span>
-                    </div>
-                    <div class="order-row">
-                      <span class="order-id">#1046</span>
-                      <span class="order-items">3x GHK-Cu</span>
-                      <span class="order-total">$85.50</span>
-                      <span class="status-pill st-paid">Paid</span>
-                      <span class="status-pill st-pend" style="margin-left:4px">Processing</span>
-                    </div>
-                    <div class="order-row">
-                      <span class="order-id">#1045</span>
-                      <span class="order-items">1x BPC-157</span>
-                      <span class="order-total">$34.99</span>
-                      <span class="status-pill st-pend">Pending</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -1013,6 +1135,12 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
     <p class="section-label">More Work</p>
     <h2 class="section-title">Other Projects</h2>
     <div class="more-grid">
+      <div class="mini-card glass reveal">
+        <span class="badge-personal">Personal</span>
+        <h4>Full-Stack Ecommerce Platform</h4>
+        <p>Production-grade ecommerce stack built from scratch &mdash; dual-market with GeoIP routing, guest checkout, affiliate program with commission tracking, discount codes, store credits, abandoned cart recovery, email campaigns with open tracking, shipping labels via Shippo, and a full admin dashboard. 50+ routes, 13+ database tables.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span><span class="tag">Vanilla JS</span><span class="tag">Docker</span><span class="tag">Shippo API</span><span class="tag">Playwright</span></div>
+      </div>
       <div class="mini-card glass reveal">
         <h4>Resume Builder</h4>
         <p>Node.js tool generating tailored .docx resumes from structured experience data, customized per job description.</p>
@@ -1037,30 +1165,6 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
         <h4>Weekly Tracker Email</h4>
         <p>Excel VBA + Python system auto-generating formatted Outlook email drafts for weekly project updates.</p>
         <div class="tags"><span class="tag">VBA</span><span class="tag">Python</span><span class="tag">Outlook</span></div>
-      </div>
-      <div class="mini-card glass reveal">
-        <span class="badge-grad">Graduate</span>
-        <h4>NLP Bias Detection</h4>
-        <p>LSTM and Transformer-based system for detecting bias in text and generating abstractive summaries.</p>
-        <div class="tags"><span class="tag">PyTorch</span><span class="tag">Transformers</span><span class="tag">LSTM</span><span class="tag">NLP</span></div>
-      </div>
-      <div class="mini-card glass reveal">
-        <span class="badge-grad">Graduate</span>
-        <h4>Alzheimer's MRI Classification</h4>
-        <p>Computer vision pipeline using GANs for data augmentation and Vision Transformers for brain MRI classification.</p>
-        <div class="tags"><span class="tag">GANs</span><span class="tag">ViT</span><span class="tag">TensorFlow</span><span class="tag">Medical AI</span></div>
-      </div>
-      <div class="mini-card glass reveal">
-        <span class="badge-grad">Graduate</span>
-        <h4>Flight Delay Prediction</h4>
-        <p>Time-series forecasting model for flight delays using historical aviation data and ensemble methods.</p>
-        <div class="tags"><span class="tag">Time Series</span><span class="tag">scikit-learn</span><span class="tag">XGBoost</span></div>
-      </div>
-      <div class="mini-card glass reveal">
-        <span class="badge-grad">Graduate &bull; Best Poster</span>
-        <h4>Heart Disease Prediction</h4>
-        <p>CNN-based diagnostic model for cardiovascular disease classification. Won Best Poster at university symposium.</p>
-        <div class="tags"><span class="tag">CNN</span><span class="tag">TensorFlow</span><span class="tag">Healthcare</span></div>
       </div>
     </div>
   </div>
