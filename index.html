@@ -1216,8 +1216,6 @@ const sessionId = Date.now() + '-' + Math.random().toString(36).substr(2, 9);
 const sessionStart = new Date();
 const viewed = { sections: new Set(), projects: new Set(), clicks: [], maxScroll: 0 };
 const DISCORD_PROXY = 'https://portfolio-discord-proxy.krysh1998.workers.dev';
-const OWNER_IP = 'REDACTED';
-let isOwnerVisit = false;
 
 function getDeviceType() {
   const w = window.innerWidth;
@@ -1227,7 +1225,6 @@ function getDeviceType() {
 }
 
 function sendDiscord(payload, urgent) {
-  if (isOwnerVisit) return;
   const body = JSON.stringify(payload);
   if (urgent) {
     // For page close — sendBeacon is most reliable
@@ -1250,7 +1247,6 @@ function sendDiscord(payload, urgent) {
   try {
     const res = await fetch('https://ipapi.co/json/');
     const geo = await res.json();
-    if (geo.ip === OWNER_IP) { isOwnerVisit = true; return; }
     loc = `${geo.city || '?'}, ${geo.region || ''} ${geo.country_name || geo.country || ''}`.trim();
     org = geo.org || 'Unknown';
   } catch(e) {}
