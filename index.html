@@ -1346,10 +1346,11 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
   btn.textContent = 'Sending...';
 
   try {
-    if (!isOwnerVisit) await fetch(DISCORD_PROXY, {
+    await fetch(DISCORD_PROXY, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        _contact: { name: data.name, email: data.email, message: data.message },
         embeds: [{
           title: '✉️ New Contact Form Message',
           color: 0x10B981,
