@@ -118,6 +118,24 @@ nav {
 }
 .hero h1 { font-size: clamp(40px, 7vw, 72px); font-weight: 800; letter-spacing: -2px; line-height: 1.05; margin-bottom: 16px; }
 .hero-sub { font-size: 18px; color: var(--muted); font-weight: 500; margin: 0 auto 32px; letter-spacing: -.3px; line-height: 1.5; max-width: 560px; }
+.hero-status {
+  display: block; text-align: center;
+  font-size: 0.85rem; letter-spacing: 0.02em;
+  color: #7d8a96; line-height: 1.5;
+  max-width: 640px; margin: -16px auto 26px;
+}
+.hero-status-dot {
+  display: inline-block; vertical-align: 1px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #22c55e; margin-right: 8px;
+  box-shadow: 0 0 0 0 rgba(34,197,94,.55);
+  animation: heroStatusPulse 2s infinite;
+}
+@keyframes heroStatusPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34,197,94,.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
 .hero-cta {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 12px 28px; border-radius: 100px; font-size: 14px; font-weight: 600;
@@ -286,6 +304,31 @@ section { padding: 80px 0; }
   border-left: 3px solid var(--blue); border-radius: 0 6px 6px 0;
   padding: 6px 10px; font-size: 10px; color: var(--blue-bright); line-height: 1.45; margin-top: 4px;
 }
+
+/* ── AskData mockup extras (Tools panel + LangGraph trace) ── */
+.tools-list { display: flex; flex-direction: column; gap: 3px; }
+.tool-item {
+  padding: 3px 6px; border-radius: 4px;
+  background: rgba(59,130,246,.06);
+  border: 1px solid rgba(59,130,246,.12);
+  font-size: 9px; color: #9fb7da;
+  font-family: 'SF Mono','Cascadia Code',Consolas,monospace;
+}
+.graph-trace {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 3px;
+  margin-bottom: 4px;
+}
+.graph-node {
+  font-size: 8px; padding: 2px 6px; border-radius: 10px;
+  background: rgba(255,255,255,.04); color: #666;
+  border: 1px solid rgba(255,255,255,.06);
+  font-family: 'SF Mono','Cascadia Code',Consolas,monospace;
+}
+.graph-node.done { color: var(--blue-bright); border-color: rgba(59,130,246,.3); background: rgba(59,130,246,.08); }
+.graph-node.active { color: #e9c46a; border-color: rgba(197,162,88,.4); background: rgba(197,162,88,.1); font-weight: 600; }
+.graph-node.retried { border-color: rgba(197,162,88,.35); background: rgba(197,162,88,.08); }
+.graph-retry { font-size: 7px; color: #e9c46a; margin-left: 3px; font-weight: 600; }
+.graph-arrow { color: #444; font-size: 9px; }
 
 /* ── Targeting Console Mockup (Predictive Customer Intelligence) ── */
 .tc-layout { display: flex; flex-direction: column; min-height: 420px; }
@@ -645,15 +688,17 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   .tc-brand { width: 100%; text-align: left; padding-bottom: 4px; margin-bottom: 4px; }
   .tc-stat-footer { width: 100%; margin-top: 4px; padding-top: 6px; border-top: none; }
   .impact-row { flex-direction: row; flex-wrap: wrap; }
-  .hero { padding: 120px 20px 48px; min-height: auto; }
-  .hero h1 { font-size: 36px; letter-spacing: -1px; }
-  .hero-sub { font-size: 16px; }
+  .hero { padding: 88px 20px 28px; min-height: auto; }
+  .hero h1 { font-size: 36px; letter-spacing: -1px; margin-bottom: 12px; }
+  .hero-sub { font-size: 16px; margin-bottom: 22px; }
+  .hero-status { font-size: 0.8rem; margin: -8px auto 20px; }
   .hero-cta, .hero-secondary { display: flex; justify-content: center; width: 100%; margin: 0 0 10px 0; padding: 14px 24px; }
   .hero-secondary { margin-left: 0; }
   .hero-inner > div { display: flex; flex-direction: column; gap: 0; }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
-  .section-title { font-size: 26px; margin-bottom: 32px; }
-  section { padding: 60px 0; }
+  .section-label { margin-bottom: 6px; }
+  .section-title { font-size: 24px; margin-bottom: 20px; }
+  section { padding: 40px 0; }
   .container { padding: 0 16px; }
   .chat-layout { height: auto; min-height: 300px; }
   .dash-layout { min-height: auto; flex-direction: column; }
@@ -668,10 +713,13 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   .c-link { width: 100%; justify-content: center; }
   .order-row { flex-wrap: wrap; gap: 4px; }
   .order-items { flex: none; width: 100%; margin: 0; font-size: 9px; }
-  .agent-card .project-info-metrics { flex-direction: column; }
+  .agent-card .project-info-metrics { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+  .agent-card .project-info-metrics .impact-item { flex: 1 1 calc(50% - 6px); min-width: 0; padding: 8px 10px; }
+  .agent-card .project-info-metrics .impact-value { font-size: 15px; }
+  .agent-card .project-info-metrics .impact-label { font-size: 9.5px; margin-top: 2px; }
   .agent-card .project-info { padding: 20px; }
   .agent-card .project-info-inner { gap: 12px; }
-  .project-card { margin-bottom: 32px; }
+  .project-card { margin-bottom: 20px; }
   .mockup-frame { border-radius: 8px; }
   .impact-item { padding: 8px 12px; flex: 1 1 0; min-width: 0; }
   .impact-value { font-size: 18px; }
@@ -708,7 +756,11 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   <div class="hero-inner">
     <div class="hero-badge">Miami, FL &middot; AI & Data Science</div>
     <h1 style="color:#fff">Krysh Rajendran</h1>
-    <p class="hero-sub">AI Engineer. Built production ML systems projected to drive <strong style="color:#fff">$15M+</strong> in incremental e-commerce revenue.</p>
+    <p class="hero-sub">AI Engineer. Built production ML systems that identified <strong style="color:#fff">$15M+</strong> in incremental e-commerce revenue.</p>
+    <div class="hero-status">
+      <span class="hero-status-dot" aria-hidden="true"></span>
+      <span>Currently shipping production AI for a multi-billion-dollar e-commerce portfolio &middot; Open to Senior AI/ML Engineer roles &middot; Remote US or Miami</span>
+    </div>
     <div>
       <a href="#projects" class="hero-cta">View Projects &#8595;</a>
       <a href="https://linkedin.com/in/kryshr" target="_blank" class="hero-secondary">
@@ -725,7 +777,134 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
     <p class="section-label">Featured Work</p>
     <h2 class="section-title">Projects</h2>
 
-    <!-- ═══ 1. Predictive Customer Intelligence Engine ═══ -->
+    <!-- ═══ 1. AskData: Production LLM Agent ═══ -->
+    <div class="project-card glass reveal agent-card">
+      <div class="project-layout">
+        <div class="project-info">
+          <div class="project-info-inner">
+            <div class="project-info-text">
+              <h3>AskData: Production LLM Agent for Enterprise Analytics</h3>
+              <p>Non-technical stakeholders get BigQuery-backed analytics in plain English &mdash; no SQL, no ticket queue. A multi-step <strong>LangGraph</strong> agent plans the analysis, then orchestrates tool calls for schema lookup, SQL generation, validation, chart selection, and insight writing. Queries run against a validated subselect; structured function-calling and self-repair on errors block hallucinations. <strong>Cut analyst reporting workload 60%</strong> and became the template for org-wide agentic AI adoption.</p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">LangGraph</span><span class="tag">Claude</span>
+                <span class="tag">BigQuery</span><span class="tag">Function Calling</span>
+                <span class="tag">FastAPI</span><span class="tag">Plotly</span>
+              </div>
+            </div>
+            <div class="project-info-metrics">
+              <div class="impact-item"><div class="impact-value accent">60%</div><div class="impact-label">Analyst Workload Cut</div></div>
+              <div class="impact-item"><div class="impact-value accent">Template</div><div class="impact-label">Org-wide Agentic AI Adoption</div></div>
+              <div class="impact-item"><div class="impact-value accent">LangGraph</div><div class="impact-label">Multi-step Tool Use</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="project-mockup">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+              <span class="mockup-label">AskData: Enterprise Analytics Agent</span>
+            </div>
+            <div class="mockup-body">
+              <div class="chat-layout">
+                <div class="chat-top">
+                  <div class="chat-sidebar">
+                    <div class="cs-brand">Ask<span>Data</span></div>
+                    <div class="cs-label">Model</div>
+                    <div class="cs-select">claude-opus-4-6</div>
+                    <div class="cs-label">Tools</div>
+                    <div class="tools-list">
+                      <div class="tool-item">get_schema</div>
+                      <div class="tool-item">run_sql</div>
+                      <div class="tool-item">validate</div>
+                      <div class="tool-item">make_chart</div>
+                    </div>
+                    <div class="cs-label" style="margin-top:8px">Presets</div>
+                    <div class="cs-preset">How did revenue perform this week?</div>
+                    <div class="cs-preset">Which categories are growing?</div>
+                    <div class="cs-preset">Where is conversion dropping?</div>
+                  </div>
+                  <div class="chat-main">
+                    <div class="chat-msg user"><div class="chat-bubble">How did online revenue perform this week vs last week by product category?</div></div>
+                    <div class="chat-msg bot">
+                      <div class="chat-bubble">
+                        <div class="graph-trace">
+                          <div class="graph-node done">Plan</div>
+                          <span class="graph-arrow">&rarr;</span>
+                          <div class="graph-node done">get_schema</div>
+                          <span class="graph-arrow">&rarr;</span>
+                          <div class="graph-node done retried">run_sql<span class="graph-retry">&#x21bb;1</span></div>
+                          <span class="graph-arrow">&rarr;</span>
+                          <div class="graph-node done">validate</div>
+                          <span class="graph-arrow">&rarr;</span>
+                          <div class="graph-node done">make_chart</div>
+                          <span class="graph-arrow">&rarr;</span>
+                          <div class="graph-node active">Insight</div>
+                        </div>
+                        <div style="font-size:8px;color:#666;margin-bottom:4px">&#9679; 1 retry repaired by error feedback loop &middot; max_bytes_billed 10 GB &middot; <strong style="color:#999">(BASE_QUERY) AS data</strong></div>
+                        <details style="margin-bottom:4px">
+                          <summary style="font-size:9px;color:var(--blue-bright);cursor:pointer;margin-bottom:2px">View SQL</summary>
+                          <div class="chat-sql" style="margin:2px 0"><span class="kw">SELECT</span> category, <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> week=<span class="str">'current'</span> <span class="kw">THEN</span> revenue <span class="kw">END</span>) this_week, <span class="fn">ROUND</span>((this_week-last_week)/last_week*100,1) pct_chg <span class="kw">FROM</span> (BASE_QUERY) <span class="kw">AS</span> data <span class="kw">WHERE</span> date <span class="kw">BETWEEN</span> <span class="str">'2026-04-06'</span> <span class="kw">AND</span> <span class="str">'2026-04-19'</span> <span class="kw">GROUP BY</span> 1</div>
+                        </details>
+                        <div class="chat-chart">
+                          <div class="chart-header">
+                            <span class="chart-title-text">Revenue by Category, WoW</span>
+                            <div class="chart-legend">
+                              <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>This Week</div>
+                              <div class="legend-item"><div class="legend-dot" style="background:#555"></div>Last Week</div>
+                            </div>
+                          </div>
+                          <svg width="100%" height="65" viewBox="0 0 380 80">
+                            <line x1="30" y1="8" x2="30" y2="62" stroke="#1a1a2a" stroke-width=".5"/>
+                            <line x1="30" y1="62" x2="370" y2="62" stroke="#1a1a2a" stroke-width=".5"/>
+                            <line x1="30" y1="35" x2="370" y2="35" stroke="#1a1a2a" stroke-width=".3" stroke-dasharray="2,2"/>
+                            <text x="26" y="65" fill="#444" font-size="5.5" text-anchor="end">$0</text>
+                            <text x="26" y="38" fill="#444" font-size="5.5" text-anchor="end">$75K</text>
+                            <text x="26" y="11" fill="#444" font-size="5.5" text-anchor="end">$150K</text>
+                            <rect x="44" y="12" width="30" height="50" rx="3" fill="var(--blue)"/>
+                            <rect x="78" y="22" width="30" height="40" rx="3" fill="#555" opacity=".45"/>
+                            <text x="58" y="9" text-anchor="middle" fill="var(--blue-bright)" font-size="5.5" font-weight="600">$142K</text>
+                            <text x="76" y="73" text-anchor="middle" fill="#777" font-size="6.5">Electronics</text>
+                            <text x="76" y="79" text-anchor="middle" fill="var(--green)" font-size="5" font-weight="600">+19.8%</text>
+                            <rect x="130" y="24" width="30" height="38" rx="3" fill="var(--blue)"/>
+                            <rect x="164" y="26" width="30" height="36" rx="3" fill="#555" opacity=".45"/>
+                            <text x="144" y="21" text-anchor="middle" fill="var(--blue-bright)" font-size="5.5" font-weight="600">$108K</text>
+                            <text x="162" y="73" text-anchor="middle" fill="#777" font-size="6.5">Apparel</text>
+                            <text x="162" y="79" text-anchor="middle" fill="var(--green)" font-size="5" font-weight="600">+2.1%</text>
+                            <rect x="216" y="32" width="30" height="30" rx="3" fill="var(--blue)"/>
+                            <rect x="250" y="28" width="30" height="34" rx="3" fill="#555" opacity=".45"/>
+                            <text x="230" y="29" text-anchor="middle" fill="var(--blue-bright)" font-size="5.5" font-weight="600">$82K</text>
+                            <text x="248" y="73" text-anchor="middle" fill="#777" font-size="6.5">Home</text>
+                            <text x="248" y="79" text-anchor="middle" fill="var(--red)" font-size="5" font-weight="600">-3.1%</text>
+                            <rect x="302" y="40" width="30" height="22" rx="3" fill="var(--blue)"/>
+                            <rect x="336" y="36" width="30" height="26" rx="3" fill="#555" opacity=".45"/>
+                            <text x="316" y="37" text-anchor="middle" fill="var(--blue-bright)" font-size="5.5" font-weight="600">$61K</text>
+                            <text x="334" y="73" text-anchor="middle" fill="#777" font-size="6.5">Sports</text>
+                            <text x="334" y="79" text-anchor="middle" fill="var(--red)" font-size="5" font-weight="600">-5.7%</text>
+                          </svg>
+                        </div>
+                        <div class="chat-insight">
+                          <strong>Key Insight:</strong> Revenue grew <strong>+12.4% WoW</strong>, driven by Electronics (+19.8%). Home and Sports declined slightly. <strong>Rec:</strong> Shift ad spend toward Electronics.
+                        </div>
+                        <div class="export-btns">
+                          <div class="export-btn">&#128196; Export HTML</div>
+                          <div class="export-btn">&#128221; Export Word</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="chat-input-bar">
+                  <input type="text" placeholder="Ask a follow-up question about your data..." disabled>
+                  <button aria-label="Send">&#8593;</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 2. Predictive Customer Intelligence Engine ═══ -->
     <div class="project-card glass reveal agent-card">
       <div class="project-layout">
         <div class="project-info">
@@ -842,134 +1021,7 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
       </div>
     </div>
 
-    <!-- ═══ 2. NL-to-SQL Agent ═══ -->
-    <div class="project-card glass reveal">
-      <div class="project-layout">
-        <div class="project-info">
-          <h3>NL-to-SQL AI Agent</h3>
-          <p>Replaced <strong>4 hours</strong> of daily manual reporting with a conversational analytics agent that handles <strong>80%</strong> of ad-hoc data questions across the post-booking e-commerce team. Translates business questions into BigQuery SQL, runs the queries, and writes the insight bullets back. A Deep Analysis mode runs a 6-phase root-cause loop (Decompose &rarr; Temporal &rarr; Segment &rarr; Drill &rarr; Confirm &rarr; Conclude) up to 10 steps deep, tracking hypotheses across iterations and exiting early when the answer is clear.</p>
-          <div class="impact-row">
-            <div class="impact-item"><div class="impact-value accent">60%</div><div class="impact-label">Reporting Automated</div></div>
-            <div class="impact-item"><div class="impact-value accent">10-step</div><div class="impact-label">Autonomous Reasoning</div></div>
-          </div>
-          <div class="tags">
-            <span class="tag">Python</span><span class="tag">Claude Opus 4.6</span><span class="tag">BigQuery</span>
-            <span class="tag">Plotly</span><span class="tag">Streamlit</span>
-          </div>
-        </div>
-        <div class="project-mockup">
-          <div class="mockup-frame">
-            <div class="mockup-bar">
-              <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
-              <span class="mockup-label">Acme Analytics — NL-to-SQL Agent</span>
-            </div>
-            <div class="mockup-body">
-              <div class="chat-layout">
-                <!-- Top: sidebar + chat content -->
-                <div class="chat-top">
-                  <div class="chat-sidebar">
-                    <div class="cs-brand">Acme<span>Analytics</span></div>
-                    <div class="cs-label">Model</div>
-                    <div class="cs-select">claude-sonnet-4</div>
-                    <div class="cs-label">Mode</div>
-                    <div class="cs-toggle"><div>Quick</div><div class="active">Deep</div></div>
-                    <div class="cs-label" style="margin-top:8px">Presets</div>
-                    <div class="cs-preset">Revenue by channel?</div>
-                    <div class="cs-preset">Top products?</div>
-                    <div class="cs-preset">CVR trend?</div>
-                  </div>
-                  <div class="chat-main">
-                    <!-- User question -->
-                    <div class="chat-msg user"><div class="chat-bubble">How did online revenue perform this week vs last week by product category?</div></div>
-                    <!-- Agent response -->
-                    <div class="chat-msg bot">
-                      <div class="chat-bubble">
-                        <!-- Deep analysis stepper -->
-                        <div class="deep-stepper">
-                          <div class="step done"></div><div class="step done"></div><div class="step done"></div>
-                          <div class="step done"></div><div class="step done"></div><div class="step active"></div>
-                        </div>
-                        <div class="step-labels">
-                          <span class="step-label done">Decompose</span>
-                          <span class="step-label done">Temporal</span>
-                          <span class="step-label done">Segment</span>
-                          <span class="step-label done">Drill</span>
-                          <span class="step-label done">Confirm</span>
-                          <span class="step-label active">Conclude</span>
-                        </div>
-                        <div style="font-size:8px;color:#666;margin-bottom:4px">&#9679; 3 queries &middot; step 8/10 &middot; <strong style="color:#999">acme.sales.transactions</strong></div>
-                        <details style="margin-bottom:4px">
-                          <summary style="font-size:9px;color:var(--blue-bright);cursor:pointer;margin-bottom:2px">View SQL</summary>
-                          <div class="chat-sql" style="margin:2px 0"><span class="kw">SELECT</span> category, <span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> week=<span class="str">'current'</span> <span class="kw">THEN</span> revenue <span class="kw">END</span>) this_week, <span class="fn">ROUND</span>((this_week-last_week)/last_week*100,1) pct_chg <span class="kw">FROM</span> <span class="str">`acme.sales.transactions`</span> <span class="kw">WHERE</span> date <span class="kw">BETWEEN</span> <span class="str">'2026-03-23'</span> <span class="kw">AND</span> <span class="str">'2026-04-05'</span> <span class="kw">GROUP BY</span> 1</div>
-                        </details>
-                        <!-- Chart -->
-                        <div class="chat-chart">
-                          <div class="chart-header">
-                            <span class="chart-title-text">Revenue by Category &mdash; WoW</span>
-                            <div class="chart-legend">
-                              <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>This Week</div>
-                              <div class="legend-item"><div class="legend-dot" style="background:#555"></div>Last Week</div>
-                            </div>
-                          </div>
-                          <svg width="100%" height="65" viewBox="0 0 380 80">
-                            <!-- Grid -->
-                            <line x1="30" y1="8" x2="30" y2="62" stroke="#1a1a2a" stroke-width=".5"/>
-                            <line x1="30" y1="62" x2="370" y2="62" stroke="#1a1a2a" stroke-width=".5"/>
-                            <line x1="30" y1="35" x2="370" y2="35" stroke="#1a1a2a" stroke-width=".3" stroke-dasharray="2,2"/>
-                            <text x="26" y="65" fill="#444" font-size="5.5" text-anchor="end">$0</text>
-                            <text x="26" y="38" fill="#444" font-size="5.5" text-anchor="end">$75K</text>
-                            <text x="26" y="11" fill="#444" font-size="5.5" text-anchor="end">$150K</text>
-                            <!-- Electronics -->
-                            <rect x="44" y="12" width="30" height="50" rx="3" fill="var(--blue)"/>
-                            <rect x="78" y="22" width="30" height="40" rx="3" fill="#555" opacity=".45"/>
-                            <text x="58" y="9" text-anchor="middle" fill="var(--blue-bright)" font-size="5.5" font-weight="600">$142K</text>
-                            <text x="76" y="73" text-anchor="middle" fill="#777" font-size="6.5">Electronics</text>
-                            <text x="76" y="79" text-anchor="middle" fill="var(--green)" font-size="5" font-weight="600">+19.8%</text>
-                            <!-- Apparel -->
-                            <rect x="130" y="24" width="30" height="38" rx="3" fill="var(--blue)"/>
-                            <rect x="164" y="26" width="30" height="36" rx="3" fill="#555" opacity=".45"/>
-                            <text x="144" y="21" text-anchor="middle" fill="var(--blue-bright)" font-size="5.5" font-weight="600">$108K</text>
-                            <text x="162" y="73" text-anchor="middle" fill="#777" font-size="6.5">Apparel</text>
-                            <text x="162" y="79" text-anchor="middle" fill="var(--green)" font-size="5" font-weight="600">+2.1%</text>
-                            <!-- Home -->
-                            <rect x="216" y="32" width="30" height="30" rx="3" fill="var(--blue)"/>
-                            <rect x="250" y="28" width="30" height="34" rx="3" fill="#555" opacity=".45"/>
-                            <text x="230" y="29" text-anchor="middle" fill="var(--blue-bright)" font-size="5.5" font-weight="600">$82K</text>
-                            <text x="248" y="73" text-anchor="middle" fill="#777" font-size="6.5">Home</text>
-                            <text x="248" y="79" text-anchor="middle" fill="var(--red)" font-size="5" font-weight="600">-3.1%</text>
-                            <!-- Sports -->
-                            <rect x="302" y="40" width="30" height="22" rx="3" fill="var(--blue)"/>
-                            <rect x="336" y="36" width="30" height="26" rx="3" fill="#555" opacity=".45"/>
-                            <text x="316" y="37" text-anchor="middle" fill="var(--blue-bright)" font-size="5.5" font-weight="600">$61K</text>
-                            <text x="334" y="73" text-anchor="middle" fill="#777" font-size="6.5">Sports</text>
-                            <text x="334" y="79" text-anchor="middle" fill="var(--red)" font-size="5" font-weight="600">-5.7%</text>
-                          </svg>
-                        </div>
-                        <!-- Insight -->
-                        <div class="chat-insight">
-                          <strong>Key Insight:</strong> Revenue grew <strong>+12.4% WoW</strong>, driven by Electronics (+19.8%). Home &amp; Sports declined slightly. <strong>Rec:</strong> Shift ad spend toward Electronics.
-                        </div>
-                        <div class="export-btns">
-                          <div class="export-btn">&#128196; Export HTML</div>
-                          <div class="export-btn">&#128221; Export Word</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Bottom: chat input -->
-                <div class="chat-input-bar">
-                  <input type="text" placeholder="Ask a follow-up question about your data..." disabled>
-                  <button aria-label="Send">&#8593;</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══ 2. Anomaly Detection Dashboard ═══ -->
+    <!-- ═══ 3. Anomaly Detection Dashboard ═══ -->
     <div class="project-card glass reveal">
       <div class="project-layout">
         <div class="project-info">
@@ -1060,16 +1112,16 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
       </div>
     </div>
 
-    <!-- ═══ 3. Automated Executive Reporting Engine ═══ -->
+    <!-- ═══ 4. Automated Executive Reporting Engine ═══ -->
     <div class="project-card glass reveal">
       <div class="project-layout">
         <div class="project-info">
           <h3>Automated Executive Reporting Engine</h3>
-          <p>Replaced days of manual quarterly reporting with an automated pipeline that pulls category-level data from BigQuery, computes YoY deltas across Revenue, Shoppers, Purchasers, CVR, and RPPS, then generates the executive narrative with Claude. Surfaces category-level drivers and action items that would otherwise get missed in a manual scrub &mdash; and the narrative quality stays consistent regardless of who runs it.</p>
+          <p>Replaced days of manual quarterly reporting with an automated pipeline that pulls category-level data from BigQuery, computes YoY deltas across Revenue, Shoppers, Purchasers, CVR, and AOV, then generates the executive narrative with Claude. Surfaces category-level drivers and action items that would otherwise get missed in a manual scrub, and the narrative quality stays consistent regardless of who runs it.</p>
           <div class="impact-row impact-row-3">
             <div class="impact-item"><div class="impact-value accent">Days &rarr; Minutes</div><div class="impact-label">Reporting Turnaround</div></div>
             <div class="impact-item"><div class="impact-value accent">AI-Authored</div><div class="impact-label">Executive Narrative</div></div>
-            <div class="impact-item"><div class="impact-value accent">5 KPIs &middot; 7 Cats</div><div class="impact-label">YoY Coverage</div></div>
+            <div class="impact-item"><div class="impact-value accent">5 KPIs</div><div class="impact-label">Tracked YoY by Category</div></div>
           </div>
           <div class="tags">
             <span class="tag">Python</span><span class="tag">Claude API</span>
@@ -1090,11 +1142,11 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
               </div>
               <div class="exec-body">
                 <div class="exec-kpis">
-                  <div class="exec-kpi"><div class="exec-kpi-label">Revenue</div><div class="exec-kpi-val">$24.8M</div><div class="exec-kpi-delta" style="color:var(--green)">+18.2%</div></div>
-                  <div class="exec-kpi"><div class="exec-kpi-label">Shoppers</div><div class="exec-kpi-val">142K</div><div class="exec-kpi-delta" style="color:var(--green)">+9.4%</div></div>
-                  <div class="exec-kpi"><div class="exec-kpi-label">Purchasers</div><div class="exec-kpi-val">28.1K</div><div class="exec-kpi-delta" style="color:var(--green)">+12.7%</div></div>
-                  <div class="exec-kpi"><div class="exec-kpi-label">CVR</div><div class="exec-kpi-val">19.8%</div><div class="exec-kpi-delta" style="color:var(--green)">+3.1pp</div></div>
-                  <div class="exec-kpi"><div class="exec-kpi-label">RPPS</div><div class="exec-kpi-val">$174</div><div class="exec-kpi-delta" style="color:var(--green)">+5.6%</div></div>
+                  <div class="exec-kpi"><div class="exec-kpi-label">Revenue</div><div class="exec-kpi-val">$12.6M</div><div class="exec-kpi-delta" style="color:var(--green)">+21.4%</div></div>
+                  <div class="exec-kpi"><div class="exec-kpi-label">Shoppers</div><div class="exec-kpi-val">208K</div><div class="exec-kpi-delta" style="color:var(--green)">+7.8%</div></div>
+                  <div class="exec-kpi"><div class="exec-kpi-label">Purchasers</div><div class="exec-kpi-val">31.4K</div><div class="exec-kpi-delta" style="color:var(--green)">+14.2%</div></div>
+                  <div class="exec-kpi"><div class="exec-kpi-label">CVR</div><div class="exec-kpi-val">15.1%</div><div class="exec-kpi-delta" style="color:var(--green)">+1.9pp</div></div>
+                  <div class="exec-kpi"><div class="exec-kpi-label">AOV</div><div class="exec-kpi-val">$401</div><div class="exec-kpi-delta" style="color:var(--green)">+6.5%</div></div>
                 </div>
                 <div class="exec-section-title">Category YoY Highlights</div>
                 <table class="exec-yoy-table">
@@ -1102,21 +1154,21 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
                     <tr><th>Category</th><th>Metric</th><th>YoY</th><th>Note</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td>Beverage Package</td><td>Revenue</td><td class="delta-up">+435%</td><td>Premium pkg breakthrough</td></tr>
-                    <tr><td>Premium Drink Pkg</td><td>Revenue</td><td class="delta-up">+212%</td><td>New SKU launched Q3</td></tr>
-                    <tr><td>Excursions</td><td>CVR</td><td class="delta-down">&minus;11%</td><td>Product mix shift</td></tr>
-                    <tr><td>Internet</td><td>Revenue</td><td class="delta-up">+4.2%</td><td>Stable</td></tr>
+                    <tr><td>Smart Home</td><td>Revenue</td><td class="delta-up">+128%</td><td>New category launch</td></tr>
+                    <tr><td>Wearables</td><td>Revenue</td><td class="delta-up">+47%</td><td>Holiday bundle lift</td></tr>
+                    <tr><td>Outdoor Gear</td><td>CVR</td><td class="delta-down">&minus;8%</td><td>Product mix shift</td></tr>
+                    <tr><td>Accessories</td><td>Revenue</td><td class="delta-up">+3.9%</td><td>Stable</td></tr>
                   </tbody>
                 </table>
                 <div class="exec-narrative">
                   <span class="auto-tag">&#10024; Claude</span>
-                  <p><strong>Q4 was driven primarily by Beverage Package growth (+435% YoY)</strong>, with the new Premium Drink package (launched in Q3) accounting for the bulk of the lift. CVR expansion of +3.1pp suggests intent quality is improving, not just volume.</p>
-                  <p>The Excursions category warrants attention &mdash; CVR is down 11% YoY, traceable to a product mix shift toward higher-priced shore excursions that convert at a lower rate. Recommend revisiting the excursion landing page to surface mid-tier options.</p>
+                  <p><strong>Q4 was driven primarily by Smart Home growth (+128% YoY)</strong>, with the new Starter Bundle SKU (launched in Q3) accounting for the bulk of the lift. CVR expansion of +1.9pp suggests intent quality is improving, not just volume.</p>
+                  <p>The Outdoor Gear category warrants attention: CVR is down 8% YoY, traceable to a product mix shift toward higher-priced items that convert at a lower rate. Recommend revisiting the Outdoor landing page to surface mid-tier options.</p>
                 </div>
                 <div class="exec-section-title">Action Items</div>
                 <div class="exec-actions">
-                  <span class="exec-action-chip">Double down on Premium Drink promo</span>
-                  <span class="exec-action-chip">Re-test Excursion landing mix</span>
+                  <span class="exec-action-chip">Double down on Smart Home promo</span>
+                  <span class="exec-action-chip">Re-test Outdoor landing mix</span>
                   <span class="exec-action-chip">Brief CRM on Q1 carryover</span>
                 </div>
               </div>
@@ -1142,11 +1194,6 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
         <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span><span class="tag">Vanilla JS</span><span class="tag">Docker</span><span class="tag">Shippo API</span><span class="tag">Playwright</span></div>
       </div>
       <div class="mini-card glass reveal">
-        <h4>Resume Builder</h4>
-        <p>Node.js tool generating tailored .docx resumes from structured experience data, customized per job description.</p>
-        <div class="tags"><span class="tag">Node.js</span><span class="tag">docx</span><span class="tag">CLI</span></div>
-      </div>
-      <div class="mini-card glass reveal">
         <h4>Job Application Automation</h4>
         <p>Playwright-based browser automation with HTTP control server for filling job portal forms programmatically.</p>
         <div class="tags"><span class="tag">Playwright</span><span class="tag">Node.js</span><span class="tag">REST API</span></div>
@@ -1160,11 +1207,6 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
         <h4>SAP BO Booking Pipeline</h4>
         <p>Automated data pipeline extracting booking reports from SAP Business Objects into BigQuery via Apps Script.</p>
         <div class="tags"><span class="tag">Apps Script</span><span class="tag">SAP BO</span><span class="tag">BigQuery</span></div>
-      </div>
-      <div class="mini-card glass reveal">
-        <h4>Weekly Tracker Email</h4>
-        <p>Excel VBA + Python system auto-generating formatted Outlook email drafts for weekly project updates.</p>
-        <div class="tags"><span class="tag">VBA</span><span class="tag">Python</span><span class="tag">Outlook</span></div>
       </div>
     </div>
   </div>
