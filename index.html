@@ -12,7 +12,7 @@
   gtag('config', 'G-SPNY5SJVH2');
 </script>
 <title>Krysh Rajendran — AI Engineer · Agentic Systems & LLM Evaluation</title>
-<meta name="description" content="AI engineer building production LLM agents: MCP, LangGraph, Snowflake Cortex, SQL-verified evaluation harnesses, and governed enterprise data access.">
+<meta name="description" content="AI engineer building production LLM agents: ReAct agents on Amazon Bedrock AgentCore, MCP, Snowflake Cortex, OpenTelemetry, SQL-verified evaluation harnesses, and governed enterprise data access.">
 <meta property="og:title" content="Krysh Rajendran — AI Engineer · Agentic Systems & LLM Evaluation">
 <meta property="og:description" content="Production LLM agents, evaluation harnesses, and governed enterprise AI platforms. Answer correctness 53% → 91%; $15M+ revenue from ML in production.">
 <meta property="og:image" content="https://kryshr.github.io/og-image.png">
@@ -820,11 +820,12 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
             <div class="project-info-text">
               <span class="badge-current">Current &middot; Serrin client engagement</span>
               <h3>Governed Enterprise AI Agent Platform + SQL-Verified Eval Harness</h3>
-              <p>Business users at a multi-billion-dollar global enterprise ask questions of trusted data straight from <strong>Claude</strong> and <strong>ChatGPT</strong>. Requests flow over <strong>MCP</strong> into a retrieval-based router that picks the right semantic models, then <strong>Snowflake Cortex</strong> generates SQL that runs as the caller &mdash; OAuth/SSO identity, least-privilege roles, row-level security, and masking stay intact end to end. Every change is gated by a SQL-verified evaluation suite spanning multiple business domains with safety-guardrail coverage, scored by custom LLM-as-judge metrics for correctness, groundedness, tool selection, latency, and cost. That loop took <strong>answer correctness from 53% to 91%</strong>, cut response time from ~45s to 20s, and reduced token use 63%.</p>
+              <p>Business users at a multi-billion-dollar global enterprise ask questions of trusted data straight from <strong>Claude</strong> and <strong>ChatGPT</strong>. Requests flow over <strong>MCP</strong> to a <strong>ReAct agent</strong> running on <strong>Amazon Bedrock AgentCore</strong>, which reasons through each question, routes it to the right semantic models, and has <strong>Snowflake Cortex</strong> generate SQL that runs as the caller &mdash; OAuth/SSO identity, least-privilege roles, row-level security, and masking stay intact end to end. Every agent step is traced with <strong>OpenTelemetry</strong>, and releases ship to AWS through <strong>CircleCI</strong> and Terraform. Every change is gated by a SQL-verified evaluation suite spanning multiple business domains with safety-guardrail coverage, scored by custom LLM-as-judge metrics for correctness, groundedness, tool selection, latency, and cost. That loop took <strong>answer correctness from 53% to 91%</strong>, cut response time from ~45s to 20s, and reduced token use 63%.</p>
               <div class="tags">
-                <span class="tag">Python</span><span class="tag">MCP</span><span class="tag">Snowflake Cortex</span>
-                <span class="tag">Semantic Models</span><span class="tag">LLM-as-Judge</span><span class="tag">OAuth/SSO</span>
-                <span class="tag">Datadog</span><span class="tag">Terraform</span><span class="tag">Streamlit</span>
+                <span class="tag">Python</span><span class="tag">ReAct Agent</span><span class="tag">Amazon Bedrock</span><span class="tag">AgentCore</span>
+                <span class="tag">MCP</span><span class="tag">Snowflake Cortex</span><span class="tag">Semantic Models</span><span class="tag">LLM-as-Judge</span>
+                <span class="tag">OpenTelemetry</span><span class="tag">Datadog</span><span class="tag">AWS</span><span class="tag">CircleCI</span>
+                <span class="tag">Terraform</span><span class="tag">OAuth/SSO</span><span class="tag">Streamlit</span>
               </div>
             </div>
             <div class="project-info-metrics">
@@ -849,10 +850,11 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
                   <div class="gov-q">&ldquo;Which regions missed margin targets last quarter, and why?&rdquo;</div>
                   <div class="gov-step"><span class="gov-step-dot"></span><div><div class="gov-step-name">Claude / ChatGPT</div><div class="gov-step-meta">MCP client &rarr; tool call</div></div></div>
                   <div class="gov-step"><span class="gov-step-dot sec"></span><div><div class="gov-step-name">OAuth + SSO</div><div class="gov-step-meta">caller identity propagated</div></div></div>
+                  <div class="gov-step"><span class="gov-step-dot"></span><div><div class="gov-step-name">ReAct agent</div><div class="gov-step-meta">Bedrock AgentCore &middot; reason &rarr; act &rarr; observe</div></div></div>
                   <div class="gov-step"><span class="gov-step-dot"></span><div><div class="gov-step-name">Retrieval router</div><div class="gov-step-meta">selects relevant semantic models</div></div></div>
                   <div class="gov-step"><span class="gov-step-dot"></span><div><div class="gov-step-name">Cortex Analyst</div><div class="gov-step-meta">semantic model &rarr; SQL</div></div></div>
                   <div class="gov-step"><span class="gov-step-dot sec"></span><div><div class="gov-step-name">RLS + masking</div><div class="gov-step-meta">enforced as the caller</div></div></div>
-                  <div class="gov-step"><span class="gov-step-dot ok"></span><div><div class="gov-step-name">Grounded answer</div><div class="gov-step-meta">SQL + latency + tokens &rarr; telemetry</div></div></div>
+                  <div class="gov-step"><span class="gov-step-dot ok"></span><div><div class="gov-step-name">Grounded answer</div><div class="gov-step-meta">OpenTelemetry trace &middot; SQL, tokens, latency</div></div></div>
                 </div>
                 <div class="gov-main">
                   <div class="gov-kpis">
