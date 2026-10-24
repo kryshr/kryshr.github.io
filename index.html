@@ -11,10 +11,10 @@
   gtag('js', new Date());
   gtag('config', 'G-SPNY5SJVH2');
 </script>
-<title>Krysh Rajendran — AI & Data Science Engineer</title>
-<meta name="description" content="Production AI systems, LLM agents, anomaly detection, and automated pipelines.">
-<meta property="og:title" content="Krysh Rajendran — AI & ML Engineering Portfolio">
-<meta property="og:description" content="Production AI systems, LLM agents, anomaly detection, and automated pipelines.">
+<title>Krysh Rajendran — AI Engineer · Agentic Systems & LLM Evaluation</title>
+<meta name="description" content="AI engineer building production LLM agents: MCP, LangGraph, Snowflake Cortex, SQL-verified evaluation harnesses, and governed enterprise data access.">
+<meta property="og:title" content="Krysh Rajendran — AI Engineer · Agentic Systems & LLM Evaluation">
+<meta property="og:description" content="Production LLM agents, evaluation harnesses, and governed enterprise AI platforms. Answer correctness 53% → 91%; $15M+ revenue from ML in production.">
 <meta property="og:image" content="https://kryshr.github.io/og-image.png">
 <meta property="og:url" content="https://kryshr.github.io">
 <meta property="og:type" content="website">
@@ -206,6 +206,37 @@ section { padding: 80px 0; }
 .agent-card .project-mockup {
   border-left: none; border-top: 1px solid var(--border);
   padding: 16px 20px;
+}
+
+/* ── Governed Agent Platform Mockup ── */
+.gov-layout { display: grid; grid-template-columns: 210px 1fr; min-height: 330px; }
+.gov-trace { padding: 12px; border-right: 1px solid var(--border); background: rgba(255,255,255,.02); }
+.gov-trace-title, .gov-sec-title { font-size: 8px; color: #555; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 8px; }
+.gov-q { font-size: 9px; color: #ccc; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; margin-bottom: 10px; line-height: 1.4; }
+.gov-step { display: flex; align-items: flex-start; gap: 7px; position: relative; padding-bottom: 9px; }
+.gov-step:not(:last-child)::before { content: ''; position: absolute; left: 3px; top: 9px; bottom: 0; width: 1px; background: rgba(59,130,246,.25); }
+.gov-step-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); margin-top: 2px; flex-shrink: 0; }
+.gov-step-dot.sec { background: #e9c46a; }
+.gov-step-dot.ok { background: var(--green); }
+.gov-step-name { font-size: 9px; color: #ddd; font-weight: 600; }
+.gov-step-meta { font-size: 7.5px; color: #666; margin-top: 1px; }
+.gov-main { padding: 12px 14px; min-width: 0; }
+.gov-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
+.gov-kpi { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 6px; padding: 7px 8px; }
+.gov-kpi-label { font-size: 7px; color: #555; text-transform: uppercase; letter-spacing: .5px; }
+.gov-kpi-val { font-size: 15px; font-weight: 700; color: #fff; margin: 2px 0 1px; }
+.gov-kpi-delta { font-size: 8px; color: var(--green); font-weight: 600; }
+.gov-chart { background: rgba(255,255,255,.02); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px 4px; margin-bottom: 10px; }
+.gov-table { width: 100%; border-collapse: collapse; font-size: 9px; }
+.gov-table th { text-align: left; padding: 3px 6px; color: #555; font-weight: 600; font-size: 7.5px; text-transform: uppercase; letter-spacing: .5px; border-bottom: 1px solid var(--border); }
+.gov-table td { padding: 4px 6px; color: #999; border-bottom: 1px solid rgba(255,255,255,.03); }
+.gov-pass { color: #4ade80; font-weight: 600; }
+.gov-fix { color: #fbbf24; font-weight: 600; }
+.mockup-note { font-size: 10px; color: #555; text-align: center; margin-top: 8px; }
+.badge-current {
+  display: inline-block; font-size: 9px; font-weight: 600;
+  padding: 2px 10px; border-radius: 100px; margin-bottom: 10px;
+  background: rgba(34,197,94,.1); color: #4ade80;
 }
 
 /* ── Chat Mockup (NL-to-SQL) ── */
@@ -713,6 +744,10 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   .c-link { width: 100%; justify-content: center; }
   .order-row { flex-wrap: wrap; gap: 4px; }
   .order-items { flex: none; width: 100%; margin: 0; font-size: 9px; }
+  .gov-layout { grid-template-columns: 1fr; }
+  .gov-trace { border-right: none; border-bottom: 1px solid var(--border); }
+  .gov-kpis { grid-template-columns: repeat(2, 1fr); }
+  .gov-table th:nth-child(3), .gov-table td:nth-child(3) { display: none; }
   .agent-card .project-info-metrics { flex-direction: row; flex-wrap: wrap; gap: 6px; }
   .agent-card .project-info-metrics .impact-item { flex: 1 1 calc(50% - 6px); min-width: 0; padding: 8px 10px; }
   .agent-card .project-info-metrics .impact-value { font-size: 15px; }
@@ -754,12 +789,12 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
 <!-- ── Hero ── -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">Miami, FL &middot; AI & Data Science</div>
+    <div class="hero-badge">Miami, FL &middot; AI Engineering &middot; Agentic Systems</div>
     <h1 style="color:#fff">Krysh Rajendran</h1>
-    <p class="hero-sub">AI Engineer. Built production ML systems that identified <strong style="color:#fff">$15M+</strong> in incremental e-commerce revenue.</p>
+    <p class="hero-sub">AI Engineer building production LLM agents that are measured, governed, and trusted. Took an enterprise agent from <strong style="color:#fff">53% &rarr; 91%</strong> answer correctness; earlier AI and ML systems drove <strong style="color:#fff">$15M+</strong> in revenue.</p>
     <div class="hero-status">
       <span class="hero-status-dot" aria-hidden="true"></span>
-      <span>Currently shipping production AI for a multi-billion-dollar e-commerce portfolio &middot; Open to Senior AI/ML Engineer roles &middot; Remote US or Miami</span>
+      <span>Founder &amp; Principal AI Engineer at <a href="https://serrin.co" target="_blank" style="color:inherit">Serrin</a> &middot; Open to Senior AI Engineer roles &middot; Remote US or Miami</span>
     </div>
     <div>
       <a href="#projects" class="hero-cta">View Projects &#8595;</a>
@@ -776,6 +811,104 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   <div class="container">
     <p class="section-label">Featured Work</p>
     <h2 class="section-title">Projects</h2>
+
+    <!-- ═══ 0. Governed Enterprise AI Agent Platform (Serrin) ═══ -->
+    <div class="project-card glass reveal agent-card">
+      <div class="project-layout">
+        <div class="project-info">
+          <div class="project-info-inner">
+            <div class="project-info-text">
+              <span class="badge-current">Current &middot; Serrin client engagement</span>
+              <h3>Governed Enterprise AI Agent Platform + SQL-Verified Eval Harness</h3>
+              <p>Business users at a multi-billion-dollar global enterprise ask questions of trusted data straight from <strong>Claude</strong> and <strong>ChatGPT</strong>. Requests flow over <strong>MCP</strong> into a retrieval-based router that picks the right semantic models, then <strong>Snowflake Cortex</strong> generates SQL that runs as the caller &mdash; OAuth/SSO identity, least-privilege roles, row-level security, and masking stay intact end to end. Every change is gated by a SQL-verified evaluation suite spanning multiple business domains with safety-guardrail coverage, scored by custom LLM-as-judge metrics for correctness, groundedness, tool selection, latency, and cost. That loop took <strong>answer correctness from 53% to 91%</strong>, cut response time from ~45s to 20s, and reduced token use 63%.</p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">MCP</span><span class="tag">Snowflake Cortex</span>
+                <span class="tag">Semantic Models</span><span class="tag">LLM-as-Judge</span><span class="tag">OAuth/SSO</span>
+                <span class="tag">Datadog</span><span class="tag">Terraform</span><span class="tag">Streamlit</span>
+              </div>
+            </div>
+            <div class="project-info-metrics">
+              <div class="impact-item"><div class="impact-value accent">53% &rarr; 91%</div><div class="impact-label">Answer Correctness</div></div>
+              <div class="impact-item"><div class="impact-value accent">45s &rarr; 20s</div><div class="impact-label">Agent Response Time</div></div>
+              <div class="impact-item"><div class="impact-value accent">&minus;63%</div><div class="impact-label">Token Consumption</div></div>
+              <div class="impact-item"><div class="impact-value accent">95%</div><div class="impact-label">Groundedness</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="project-mockup">
+          <div style="width:100%">
+          <div class="mockup-frame">
+            <div class="mockup-bar">
+              <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+              <span class="mockup-label">Agent Eval Scorecard &mdash; release gate</span>
+            </div>
+            <div class="mockup-body">
+              <div class="gov-layout">
+                <div class="gov-trace">
+                  <div class="gov-trace-title">Request trace</div>
+                  <div class="gov-q">&ldquo;Which regions missed margin targets last quarter, and why?&rdquo;</div>
+                  <div class="gov-step"><span class="gov-step-dot"></span><div><div class="gov-step-name">Claude / ChatGPT</div><div class="gov-step-meta">MCP client &rarr; tool call</div></div></div>
+                  <div class="gov-step"><span class="gov-step-dot sec"></span><div><div class="gov-step-name">OAuth + SSO</div><div class="gov-step-meta">caller identity propagated</div></div></div>
+                  <div class="gov-step"><span class="gov-step-dot"></span><div><div class="gov-step-name">Retrieval router</div><div class="gov-step-meta">selects relevant semantic models</div></div></div>
+                  <div class="gov-step"><span class="gov-step-dot"></span><div><div class="gov-step-name">Cortex Analyst</div><div class="gov-step-meta">semantic model &rarr; SQL</div></div></div>
+                  <div class="gov-step"><span class="gov-step-dot sec"></span><div><div class="gov-step-name">RLS + masking</div><div class="gov-step-meta">enforced as the caller</div></div></div>
+                  <div class="gov-step"><span class="gov-step-dot ok"></span><div><div class="gov-step-name">Grounded answer</div><div class="gov-step-meta">SQL + latency + tokens &rarr; telemetry</div></div></div>
+                </div>
+                <div class="gov-main">
+                  <div class="gov-kpis">
+                    <div class="gov-kpi"><div class="gov-kpi-label">Correctness</div><div class="gov-kpi-val">91%</div><div class="gov-kpi-delta">from 53%</div></div>
+                    <div class="gov-kpi"><div class="gov-kpi-label">Groundedness</div><div class="gov-kpi-val">95%</div><div class="gov-kpi-delta">LLM-as-judge</div></div>
+                    <div class="gov-kpi"><div class="gov-kpi-label">Routing</div><div class="gov-kpi-val">91%</div><div class="gov-kpi-delta">from 57%</div></div>
+                    <div class="gov-kpi"><div class="gov-kpi-label">Latency</div><div class="gov-kpi-val">20s</div><div class="gov-kpi-delta">from ~45s</div></div>
+                  </div>
+                  <div class="gov-chart">
+                    <div class="chart-header">
+                      <span class="chart-title-text">Answer correctness by eval run</span>
+                      <div class="chart-legend">
+                        <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>Correctness</div>
+                        <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Release bar</div>
+                      </div>
+                    </div>
+                    <svg style="width:100%;height:auto;max-height:130px;display:block" viewBox="0 0 380 80" role="img" aria-label="Answer correctness rising from 53 percent to 91 percent across evaluation runs">
+                      <line x1="30" y1="8" x2="370" y2="8" stroke="#1a1a2a" stroke-width=".4" stroke-dasharray="2,2"/>
+                      <line x1="30" y1="33.8" x2="370" y2="33.8" stroke="#1a1a2a" stroke-width=".4" stroke-dasharray="2,2"/>
+                      <line x1="30" y1="59.7" x2="370" y2="59.7" stroke="#1a1a2a" stroke-width=".4" stroke-dasharray="2,2"/>
+                      <text x="26" y="10" fill="#444" font-size="5.5" text-anchor="end">100%</text>
+                      <text x="26" y="36" fill="#444" font-size="5.5" text-anchor="end">75%</text>
+                      <text x="26" y="62" fill="#444" font-size="5.5" text-anchor="end">50%</text>
+                      <line x1="30" y1="19.3" x2="370" y2="19.3" stroke="var(--green)" stroke-width=".8" stroke-dasharray="4,3" opacity=".6"/>
+                      <polygon points="30,70 30,56.6 78,51.4 126,45.2 174,38 222,30.7 270,24.5 318,20.4 366,17.3 366,70" fill="rgba(59,130,246,.08)"/>
+                      <polyline points="30,56.6 78,51.4 126,45.2 174,38 222,30.7 270,24.5 318,20.4 366,17.3" fill="none" stroke="var(--blue)" stroke-width="2"/>
+                      <circle cx="30" cy="56.6" r="2.5" fill="var(--blue)"/>
+                      <circle cx="366" cy="17.3" r="3" fill="var(--blue-bright)"/>
+                      <text x="30" y="66" fill="#777" font-size="5.5" text-anchor="middle">53%</text>
+                      <text x="366" y="12" fill="var(--blue-bright)" font-size="6" font-weight="600" text-anchor="middle">91%</text>
+                      <text x="126" y="55" fill="#666" font-size="5" text-anchor="middle">router v2</text>
+                      <text x="222" y="40.5" fill="#666" font-size="5" text-anchor="middle">semantic fixes</text>
+                      <text x="318" y="30" fill="#666" font-size="5" text-anchor="middle">orchestration</text>
+                      <text x="30" y="78" fill="#444" font-size="5.5" text-anchor="middle">baseline</text>
+                      <text x="366" y="78" fill="#444" font-size="5.5" text-anchor="middle">latest</text>
+                    </svg>
+                  </div>
+                  <div class="gov-sec-title">Failure analysis &rarr; fix</div>
+                  <table class="gov-table">
+                    <thead><tr><th>Root cause</th><th>Fix</th><th>Layer</th><th>Status</th></tr></thead>
+                    <tbody>
+                      <tr><td>Wrong data asset selected</td><td>Retrieval-based routing</td><td>Router</td><td class="gov-pass">Resolved</td></tr>
+                      <tr><td>Ambiguous metric definition</td><td>Semantic model synonyms</td><td>Semantic</td><td class="gov-pass">Resolved</td></tr>
+                      <tr><td>Restricted data requested</td><td>Caller-context RLS + refusal</td><td>Guardrail</td><td class="gov-pass">Pass</td></tr>
+                      <tr><td>Slow multi-hop tool calls</td><td>Fewer round-trips</td><td>Orchestration</td><td class="gov-fix">45s &rarr; 20s</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mockup-note">Illustrative mockup. Client, data, and system names are confidential.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ═══ 1. AskData: Production LLM Agent ═══ -->
     <div class="project-card glass reveal agent-card">
@@ -1189,6 +1322,18 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
     <div class="more-grid">
       <div class="mini-card glass reveal">
         <span class="badge-personal">Personal</span>
+        <h4>AskData v1: Multi-Agent Analytics Engine</h4>
+        <p>Ground-up rebuild of AskData as a domain-agnostic product. An orchestrator coordinates specialized agents &mdash; planner, concept resolver, SQL generator, validator, chart picker, and a narrator held to cited values &mdash; with a pure-code hallucination verifier that checks every number in the narrative against query results before an answer ships. Semantic layer lives in git; SQLGlot targets BigQuery and Snowflake; every run is stored for replay.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Claude</span><span class="tag">Multi-Agent</span><span class="tag">SQLGlot</span><span class="tag">DuckDB</span><span class="tag">Guardrails</span></div>
+      </div>
+      <div class="mini-card glass reveal">
+        <span class="badge-personal">Personal</span>
+        <h4>OncoBrief: Clinical Pre-Visit Intelligence</h4>
+        <p>Proof of concept on synthetic FHIR-style oncology records. Deterministic NCCN-based rules flag missing germline and genomic testing, while Claude writes a grounded chart synthesis for a pre-visit brief. The same synthetic patients drive an offline eval harness &mdash; gap precision/recall plus grounding checks &mdash; that emits a PASS/FAIL gate for CI. Non-device by design: it flags gaps and never recommends treatment.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Claude</span><span class="tag">FHIR</span><span class="tag">Eval Harness</span><span class="tag">Healthcare AI</span></div>
+      </div>
+      <div class="mini-card glass reveal">
+        <span class="badge-personal">Personal</span>
         <h4>Full-Stack Ecommerce Platform</h4>
         <p>Production-grade ecommerce stack built from scratch &mdash; dual-market with GeoIP routing, guest checkout, affiliate program with commission tracking, discount codes, store credits, abandoned cart recovery, email campaigns with open tracking, shipping labels via Shippo, and a full admin dashboard. 50+ routes, 13+ database tables.</p>
         <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span><span class="tag">Vanilla JS</span><span class="tag">Docker</span><span class="tag">Shippo API</span><span class="tag">Playwright</span></div>
@@ -1217,7 +1362,7 @@ footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--bor
   <div class="container">
     <p class="section-label">Get in Touch</p>
     <h2 style="color:#fff">Let's Connect</h2>
-    <p>Open to Senior AI/ML Engineer opportunities. Let's build something great.</p>
+    <p>Open to Senior AI Engineer roles in agentic systems, LLM evaluation, and enterprise AI platforms.</p>
     <div class="contact-links">
       <a href="mailto:krysh1998@gmail.com" class="c-link primary">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
